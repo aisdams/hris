@@ -1,6 +1,7 @@
-'use client';
 import React from 'react';
 import Link from 'next/link';
+import { cn } from '@/lib/utils';
+import { format } from 'date-fns';
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -22,16 +23,17 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { CgCloseO } from 'react-icons/cg';
 import { Input } from '@/components/ui/input';
-import { TbCircleCheck } from 'react-icons/tb';
+import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
-import { TbClipboardCopy } from 'react-icons/tb';
 import { Checkbox } from '@/components/ui/checkbox';
+import { Calendar } from '@/components/ui/calendar';
 import { HiOutlineDocumentPlus } from 'react-icons/hi2';
-import { IoIosRemoveCircleOutline } from 'react-icons/io';
-import { ArrowUpDown, ChevronDown, MoreHorizontal } from 'lucide-react';
-import { MdArrowForwardIos, MdDownload, MdOutlineDateRange } from 'react-icons/md';
+import { MdArrowForwardIos, MdDownload } from 'react-icons/md';
+import { FaChevronDown, FaRegTrashAlt, FaSearch } from 'react-icons/fa';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { ArrowUpDown, Calendar as CalendarIcon, ChevronDown, MoreHorizontal } from 'lucide-react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
 const data: Payment[] = [
@@ -155,7 +157,8 @@ export const columns: ColumnDef<Payment>[] = [
   },
 ];
 
-export default function Leave() {
+export default function Timesheet() {
+  const [date, setDate] = React.useState<Date>();
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
@@ -179,16 +182,15 @@ export default function Leave() {
       rowSelection,
     },
   });
-
   return (
     <div className="w-full">
-      <div className="flex w-full justify-between pt-10 items-center">
+      <div className="flex w-full justify-between pt-10 items-center relative">
         <div className="grid">
-          <h1 className="font-semibold mb-3 text-xl">Manage Leave Report</h1>
+          <h1 className="font-semibold mb-3 text-xl">Manage Timesheet Report</h1>
           <div className="flex items-center gap-3">
             <Link href="/">Home</Link>
             <MdArrowForwardIos className="text-xs" />
-            <h1>Manage Leave Report</h1>
+            <h1>Manage Timesheet Report</h1>
           </div>
         </div>
         <div className="flex gap-3">
@@ -201,63 +203,112 @@ export default function Leave() {
         </div>
       </div>
 
-      <div className="w-full mt-10">
-        <div className="grid grid-cols-2 gap-3 items-center">
-          <div className="flex items-center gap-3">
-            <div className="bg-purple-500 text-white px-2 w-10 h-10 rounded-md grid items-center">
-              <TbClipboardCopy className="text-2xl" />
-            </div>
-            <div className="grid">
-              <h1 className="font-semibold">Report</h1>
-              <h1 className="font-light">Monthly Leave Summary</h1>
-            </div>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <div className="bg-[#6c757d] text-white px-2 w-10 h-10 rounded-md grid items-center">
-              <MdOutlineDateRange className="text-2xl" />
-            </div>
-            <div className="grid">
-              <h1 className="font-semibold">Duration</h1>
-              <h1 className="font-light">Dec-2023</h1>
-            </div>
-          </div>
+      <div className="grid grid-cols-5 my-10 mx-auto justify-center items-center gap-5">
+        <div className="grid">
+          <h1 className="text-sm mb-2">Start Date</h1>
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                className={cn(
+                  'w-[160px] border border-gray-500 bg-transparent hover:bg-transparent justify-start text-left font-normal',
+                  !date && 'text-muted-foreground',
+                )}
+              >
+                <CalendarIcon className="mr-2 h-4 w-4" />
+                {date ? format(date, 'PPP') : <span>2023 -12-20</span>}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0">
+              <Calendar mode="single" selected={date} onSelect={setDate} initialFocus />
+            </PopoverContent>
+          </Popover>
         </div>
 
-        <div className="grid grid-cols-3 gap-3 items-center mt-8">
-          <div className="flex items-center gap-3">
-            <div className="bg-purple-500 text-white px-2 w-10 h-10 rounded-md grid items-center">
-              <TbCircleCheck className="text-2xl" />
-            </div>
-            <div className="grid">
-              <h1 className="font-semibold">Approved Leaves</h1>
-              <h1 className="font-light">3</h1>
-            </div>
-          </div>
+        <div className="grid">
+          <h1 className="text-sm mb-2">End Date</h1>
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                className={cn(
+                  'w-[160px] border border-gray-500 bg-transparent hover:bg-transparent justify-start text-left font-normal',
+                  !date && 'text-muted-foreground',
+                )}
+              >
+                <CalendarIcon className="mr-2 h-4 w-4" />
+                {date ? format(date, 'PPP') : <span>2023 -12-20</span>}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0">
+              <Calendar mode="single" selected={date} onSelect={setDate} initialFocus />
+            </PopoverContent>
+          </Popover>
+        </div>
 
-          <div className="flex items-center gap-3">
-            <div className="bg-[#6c757d] text-white px-2 w-10 h-10 rounded-md grid items-center">
-              <CgCloseO className="text-2xl" />
-            </div>
-            <div className="grid">
-              <h1 className="font-semibold">Rejected Leave</h1>
-              <h1 className="font-light">4</h1>
-            </div>
-          </div>
+        <div className="grid">
+          <h1 className="text-sm mb-2">Branch</h1>
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex px-3 w-[160px] border border-gray-500 bg-transparent hover:bg-transparent text-left font-normal justify-between rounded-md h-10 items-center pt-1">
+              All <FaChevronDown />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>China</DropdownMenuItem>
+              <DropdownMenuItem>India</DropdownMenuItem>
+              <DropdownMenuItem>Canada</DropdownMenuItem>
+              <DropdownMenuItem>Greece</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
 
-          <div className="flex items-center gap-3">
-            <div className="bg-purple-500 text-white px-2 w-10 h-10 rounded-md grid items-center">
-              <IoIosRemoveCircleOutline className="text-2xl" />
-            </div>
-            <div className="grid">
-              <h1 className="font-semibold">Pending Leaves</h1>
-              <h1 className="font-light">4</h1>
-            </div>
-          </div>
+        <div className="grid">
+          <h1 className="text-sm mb-2">Department</h1>
+          <DropdownMenu>
+            <DropdownMenuTrigger className="flex px-3 w-[160px] border border-gray-500 bg-transparent hover:bg-transparent text-left text-sm font-normal justify-between rounded-md h-10 items-center pt-1">
+              Select Department <FaChevronDown />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <DropdownMenuLabel>Industrials</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>China</DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+
+        <div className="flex gap-4 pt-7">
+          <Button className="bg-purple-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
+            <FaSearch />
+          </Button>
+          <Button className="bg-red-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
+            <FaRegTrashAlt />
+          </Button>
         </div>
       </div>
 
       <div className="w-full">
+        <div className="grid grid-cols-2 gap-3 mb-5">
+          <div className="grid">
+            <h1 className="font-semibold mb-2">Title</h1>
+            <p>Timesheet Report</p>
+          </div>
+          <div className="grid">
+            <h1 className="font-semibold mb-2">Duration </h1>
+            <p>2022-01-01 to 2022-03-30</p>
+          </div>
+        </div>
+        <div className="grid grid-cols-2 gap-3">
+          <div className="grid">
+            <h1 className="font-semibold mb-2">Total Working Employee :</h1>
+            <p>0</p>
+          </div>
+          <div className="grid">
+            <h1 className="font-semibold mb-2">Total Working Hours : </h1>
+            <p>0</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full mt-10">
         <div className="flex items-center py-4">
           <Input
             placeholder="Filter emails..."

@@ -20,7 +20,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 export default function Navbar() {
   return (
-    <div className="!fixed grid grid-cols-[1fr_1fr_2fr] py-3 justify-between px-10 h-max !w-full bg-white">
+    <div className="!fixed grid grid-cols-[1fr_1fr_2fr] py-3 justify-between px-10 h-max !w-full bg-white z-10">
       <div className="flex justify-between items-center pr-16">
         <Image src={Logo} alt="" />
         <div className="">
