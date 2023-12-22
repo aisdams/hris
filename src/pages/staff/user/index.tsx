@@ -1,14 +1,14 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Button } from '@/components/ui/button';
 import { FaUserPlus, FaPlus } from 'react-icons/fa';
 import LionImage from '../../../../public/img/lion.jpg';
 import ImageAv from '../../../../public/img/image.jpg';
-import FamilyImage from '../../../../public/img/family.jpg';
 import { HiOutlineDocumentPlus } from 'react-icons/hi2';
+import FamilyImage from '../../../../public/img/family.jpg';
 import { MdArrowForwardIos, MdDownload } from 'react-icons/md';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 export default function User() {
   const users = [
@@ -44,7 +44,7 @@ export default function User() {
         <div className="grid">
           <h1 className="font-semibold mb-3 text-xl">Manage Users</h1>
           <div className="flex items-center gap-3">
-            <Link href="/">Home</Link>
+            <Link href="/">Dashboard</Link>
             <MdArrowForwardIos className="text-xs" />
             <h1>Manage Users</h1>
           </div>

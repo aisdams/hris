@@ -79,11 +79,11 @@ const sideBarData = [
     sub: [
       {
         title: 'Set Salery',
-        link: '/setsalary',
+        link: '/payroll/set-salary',
       },
       {
         title: 'Payslip',
-        link: '/payslip',
+        link: '/payroll/payslip',
       },
     ],
   },
@@ -93,7 +93,7 @@ const sideBarData = [
     sub: [
       {
         title: 'Timesheet',
-        link: '/timesheet',
+        link: '/timesheet/sec',
       },
       {
         title: 'Manage Leave',
@@ -105,11 +105,11 @@ const sideBarData = [
         submenu: [
           {
             title: 'Marked Attendance',
-            link: '/attendanceemployee',
+            link: '/timesheet/attendance/marked-attendance',
           },
           {
             title: 'Bulk Attendance',
-            link: '/attendanceemployee/bulkattendance',
+            link: '/timesheet/attendance/bulkattendance',
           },
         ],
       },
@@ -129,7 +129,7 @@ const sideBarData = [
       },
       {
         title: 'Goal Tracking',
-        link: '/perfomance/goaltracking',
+        link: '/perfomance/goal-tracking',
       },
     ],
   },
@@ -177,7 +177,7 @@ const sideBarData = [
       },
       {
         title: 'Trainer',
-        link: '/trainer',
+        link: '/training/trainer',
       },
     ],
   },

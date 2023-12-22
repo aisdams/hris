@@ -18,11 +18,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <div className="!h-screen">
       <Navbar />
       <div className="flex">
-        <div className="w-1/4 bg-gray-200 p-4">
+        <div className="w-1/5 bg-gray-200">
           <Sidebar />
         </div>
-        <div className="w-3/4 p-4">
-          <div className="pl-10 pt-10 justify-start pr-8 ml-2 w-full">{children}</div>
+        <div className="w-4/5 p-4">
+          <div className="pl-10 pt-14 justify-start pr-8 ml-2 w-full">{children}</div>
+          {/* <Footer /> */}
         </div>
       </div>
     </div>

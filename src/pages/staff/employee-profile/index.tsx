@@ -85,7 +85,7 @@ export default function EmployeeProfile() {
         <div className="grid">
           <h1 className="font-semibold mb-3 text-xl">Employee Profile</h1>
           <div className="flex items-center gap-3">
-            <Link href="/">Home</Link>
+            <Link href="/">Dashboard</Link>
             <MdArrowForwardIos className="text-xs" />
             <h1>Employee Profile</h1>
           </div>

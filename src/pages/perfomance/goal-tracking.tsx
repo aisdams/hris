@@ -1,7 +1,6 @@
-import Link from 'next/link';
 import React from 'react';
+import Link from 'next/link';
 import { cn } from '@/lib/utils';
-import { format } from 'date-fns';
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -23,19 +22,38 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
+import { MdArrowForwardIos } from 'react-icons/md';
 import { Checkbox } from '@/components/ui/checkbox';
-import { Calendar } from '@/components/ui/calendar';
-import { Calendar as CalendarIcon } from 'lucide-react';
-import { HiOutlineDocumentPlus } from 'react-icons/hi2';
-import { MdArrowForwardIos, MdDownload } from 'react-icons/md';
-import { ArrowUpDown, ChevronDown, MoreHorizontal } from 'lucide-react';
-import { FaChevronDown, FaRegTrashAlt, FaSearch } from 'react-icons/fa';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { FaAngleDown, FaPlus } from 'react-icons/fa';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { ArrowUpDown, Check, ChevronDown, ChevronsUpDown, MoreHorizontal } from 'lucide-react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from '@/components/ui/command';
+import { Input } from '@/components/ui/input';
+
+const frameworks = [
+  {
+    value: 'next.js',
+    label: 'Next.js',
+  },
+  {
+    value: 'sveltekit',
+    label: 'SvelteKit',
+  },
+  {
+    value: 'nuxt.js',
+    label: 'Nuxt.js',
+  },
+  {
+    value: 'remix',
+    label: 'Remix',
+  },
+  {
+    value: 'astro',
+    label: 'Astro',
+  },
+];
 
 const data: Payment[] = [
   {
@@ -158,7 +176,9 @@ export const columns: ColumnDef<Payment>[] = [
   },
 ];
 
-export default function Payroll() {
+export default function GoalTracking() {
+  const [open, setOpen] = React.useState(false);
+  const [value, setValue] = React.useState('');
   const [date, setDate] = React.useState<Date>();
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
@@ -187,157 +207,79 @@ export default function Payroll() {
     <div className="w-full">
       <div className="flex w-full justify-between pt-10 items-center relative">
         <div className="grid">
-          <h1 className="font-semibold mb-3 text-xl">Manage Payroll</h1>
+          <h1 className="font-semibold mb-3 text-xl">Manage Goal Tracking</h1>
           <div className="flex items-center gap-3">
             <Link href="/">Dashboard</Link>
             <MdArrowForwardIos className="text-xs" />
-            <h1>Manage Payroll</h1>
+            <h1>Goal Tracking</h1>
           </div>
         </div>
         <div className="flex gap-3">
           <Button className="bg-purple-500 text-white px-2 w-9 h-9 rounded-md">
-            <MdDownload />
-          </Button>
-          <Button className="bg-purple-500 text-white px-2 w-9 h-9 rounded-md">
-            <HiOutlineDocumentPlus />
+            <FaPlus />
           </Button>
         </div>
       </div>
 
-      <div className="grid grid-cols-5 my-10 mx-auto justify-center items-center gap-5">
-        <div className="grid">
-          <h1 className="text-sm mb-2">Type</h1>
-          <RadioGroup defaultValue="monthly" className="flex">
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="monthly" id="monthly" />
-              <Label htmlFor="monthly" className="font-semibold">
-                Monthly
-              </Label>
+      <div className="flex justify-between mt-10">
+        <div className="flex">
+          <div className="flex items-center gap-3">
+            <div className="border border-gray-400 px-5 py-1 rounded-md">
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex gap-3 items-center">
+                  10 <FaAngleDown />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>Profile</DropdownMenuItem>
+                  <DropdownMenuItem>Billing</DropdownMenuItem>
+                  <DropdownMenuItem>Team</DropdownMenuItem>
+                  <DropdownMenuItem>Subscription</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="yearly" id="yearly" />
-              <Label htmlFor="yearly">Yearly</Label>
-            </div>
-          </RadioGroup>
+            <h1>entries per page</h1>
+          </div>
         </div>
 
-        <div className="grid">
-          <h1 className="text-sm mb-2">Month</h1>
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button
-                className={cn(
-                  'w-[160px] border border-gray-500 bg-transparent hover:bg-transparent justify-start text-left font-normal',
-                  !date && 'text-muted-foreground',
-                )}
-              >
-                <CalendarIcon className="mr-2 h-4 w-4" />
-                {date ? format(date, 'PPP') : <span>December 2023</span>}
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-0">
-              <Calendar mode="single" selected={date} onSelect={setDate} initialFocus />
-            </PopoverContent>
-          </Popover>
-        </div>
-
-        <div className="grid">
-          <h1 className="text-sm mb-2">Branch</h1>
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex px-3 w-[160px] border border-gray-500 bg-transparent hover:bg-transparent text-left font-normal justify-between rounded-md h-10 items-center pt-1">
-              All <FaChevronDown />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>China</DropdownMenuItem>
-              <DropdownMenuItem>India</DropdownMenuItem>
-              <DropdownMenuItem>Canada</DropdownMenuItem>
-              <DropdownMenuItem>Greece</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-
-        <div className="grid">
-          <h1 className="text-sm mb-2">Department</h1>
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex px-3 w-[160px] border border-gray-500 bg-transparent hover:bg-transparent text-left text-sm font-normal justify-between rounded-md h-10 items-center pt-1">
-              Select Department <FaChevronDown />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel>Industrials</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>China</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
-
-        <div className="flex gap-4 pt-7">
-          <Button className="bg-purple-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
-            <FaSearch />
-          </Button>
-          <Button className="bg-red-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
-            <FaRegTrashAlt />
-          </Button>
-        </div>
+        <Popover open={open} onOpenChange={setOpen}>
+          <PopoverTrigger asChild>
+            <Button
+              variant="outline"
+              role="combobox"
+              aria-expanded={open}
+              className="w-[200px] border border-gray-400 justify-between"
+            >
+              {value ? frameworks.find((framework) => framework.value === value)?.label : 'Search...'}
+              <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+            </Button>
+          </PopoverTrigger>
+          <PopoverContent className="w-[200px] p-0">
+            <Command>
+              <CommandInput placeholder="Search framework..." />
+              <CommandEmpty>No framework found.</CommandEmpty>
+              <CommandGroup>
+                {frameworks.map((framework) => (
+                  <CommandItem
+                    key={framework.value}
+                    value={framework.value}
+                    onSelect={(currentValue) => {
+                      setValue(currentValue === value ? '' : currentValue);
+                      setOpen(false);
+                    }}
+                  >
+                    <Check className={cn('mr-2 h-4 w-4', value === framework.value ? 'opacity-100' : 'opacity-0')} />
+                    {framework.label}
+                  </CommandItem>
+                ))}
+              </CommandGroup>
+            </Command>
+          </PopoverContent>
+        </Popover>
       </div>
 
-      <div className="grid grid-cols-2 mt-10">
-        <div className="grid">
-          <div className="grid">
-            <h1 className="font-semibold">Report :</h1>
-            <h3>Monthly Payroll Summary</h3>
-          </div>
-          <div className="grid grid-cols-2 gap-2 mt-10">
-            <div className="grid">
-              <h1 className="font-semibold">Total Basic Salary :</h1>
-              <h3>$197,570.00</h3>
-            </div>
-            <div className="grid">
-              <h1 className="font-semibold">Total Net Salary :</h1>
-              <h3>$8,492,572.00</h3>
-            </div>
-          </div>
-          <div className="grid grid-cols-2 gap-2 mt-10">
-            <div className="grid">
-              <h1 className="font-semibold">Total Loan :</h1>
-              <h3>$7,842.00</h3>
-            </div>
-            <div className="grid">
-              <h1 className="font-semibold">Total Saturation Deduction :</h1>
-              <h3>$3,412.00</h3>
-            </div>
-          </div>
-        </div>
-        <div className="grid">
-          <div className="grid">
-            <h1 className="font-semibold">Duration :</h1>
-            <h3>Dec-2023</h3>
-          </div>
-          <div className="grid grid-cols-2 gap-2 mt-10">
-            <div className="grid">
-              <h1 className="font-semibold">Total Allowance :</h1>
-              <h3>$6,972.00</h3>
-            </div>
-            <div className="grid">
-              <h1 className="font-semibold">Total Commission :</h1>
-              <h3>$6,908.00</h3>
-            </div>
-          </div>
-          <div className="grid grid-cols-2 gap-2 mt-10">
-            <div className="grid">
-              <h1 className="font-semibold">Total Other Payment :</h1>
-              <h3>$7,842.00</h3>
-            </div>
-            <div className="grid">
-              <h1 className="font-semibold">Total Overtime :</h1>
-              <h3>$3,412.00</h3>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="w-full mt-10">
+      <div className="w-full">
         <div className="flex items-center py-4">
           <Input
             placeholder="Filter emails..."

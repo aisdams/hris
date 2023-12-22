@@ -50,7 +50,7 @@ export default function Role() {
         <div className="grid">
           <h1 className="font-semibold mb-3 text-xl">Manage Roles</h1>
           <div className="flex items-center gap-3">
-            <Link href="/">Home</Link>
+            <Link href="/">Dashboard</Link>
             <MdArrowForwardIos className="text-xs" />
             <h1>Manage Role</h1>
           </div>

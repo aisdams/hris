@@ -104,7 +104,7 @@ export default function Dashboard() {
             <div className="flex justify-between">
               <div className="grid">
                 <h1 className="font-bold text-xl">{datahr.total}</h1>
-                <h1 className="font-extralight text-xl">{datahr.paragraf}</h1>
+                <h1 className="font-extralight text-lg">{datahr.paragraf}</h1>
                 <div className="flex items-center gap-5">
                   <span className="text-green-500">{React.createElement(datahr.icon, { size: 14 })}</span>
                   <p>{datahr.rate} Since last month</p>

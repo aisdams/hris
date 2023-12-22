@@ -188,7 +188,7 @@ export default function Timesheet() {
         <div className="grid">
           <h1 className="font-semibold mb-3 text-xl">Manage Timesheet Report</h1>
           <div className="flex items-center gap-3">
-            <Link href="/">Home</Link>
+            <Link href="/">Dashboard</Link>
             <MdArrowForwardIos className="text-xs" />
             <h1>Manage Timesheet Report</h1>
           </div>

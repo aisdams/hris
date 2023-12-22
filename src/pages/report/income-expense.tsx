@@ -80,7 +80,7 @@ export default function IncomeExpense() {
         <div className="grid">
           <h1 className="font-semibold mb-3 text-xl">Manage Income Vs Expense</h1>
           <div className="flex items-center gap-3">
-            <Link href="/">Home</Link>
+            <Link href="/">Dashboard</Link>
             <MdArrowForwardIos className="text-xs" />
             <h1>Manage Income Vs Expense Report</h1>
           </div>
