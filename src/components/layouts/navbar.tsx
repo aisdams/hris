@@ -1,13 +1,5 @@
 import React from 'react';
-import Logo from '../../../public/img/logo-hexa.svg';
 import Image from 'next/image';
-import LogoAvatar from '../../../public/img/ghost.jpg';
-import { MdEmail } from 'react-icons/md';
-import { RiMenu5Fill } from 'react-icons/ri';
-import { IoMdSettings } from 'react-icons/io';
-import { IoIosArrowDown } from 'react-icons/io';
-import { FaPencilAlt, FaBell } from 'react-icons/fa';
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -16,7 +8,16 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { MdEmail } from 'react-icons/md';
+import { RiMenu5Fill } from 'react-icons/ri';
+import { IoMdSettings } from 'react-icons/io';
+import { IoIosArrowDown } from 'react-icons/io';
+import { FaPencilAlt, FaBell } from 'react-icons/fa';
+import Logo from '../../../public/img/logo-hexa.svg';
+import LogoAvatar from '../../../public/img/ghost.jpg';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Button } from '../ui/button';
 
 export default function Navbar() {
   return (
@@ -36,11 +37,18 @@ export default function Navbar() {
           </SheetTrigger>
           <SheetContent>
             <SheetHeader>
-              <SheetTitle>Are you sure absolutely sure?</SheetTitle>
-              <SheetDescription>
-                This action cannot be undone. This will permanently delete your account and remove your data from our
-                servers.
-              </SheetDescription>
+              <SheetTitle>Customizer</SheetTitle>
+              <SheetDescription>Customize Your Overview Page layout</SheetDescription>
+              <h1 className="font-semibold">Layouts Type</h1>
+              <div className="flex gap-3">
+                <Button>LTR</Button>
+                <Button>RTL</Button>
+              </div>
+              <h1 className="font-semibold">Sidebar Type</h1>
+              <div className="flex gap-3">
+                <Button>Light</Button>
+                <Button>Dark</Button>
+              </div>
             </SheetHeader>
           </SheetContent>
         </Sheet>
@@ -87,9 +95,9 @@ export default function Navbar() {
           </DropdownMenuContent>
         </DropdownMenu>
         <div className="flex gap-3">
-          <Image src={LogoAvatar} alt="" className="w-9 rounded-full" width={36} height={36} />
+          <Image src={LogoAvatar} alt="" className="w-9 h-9 rounded-full" width={36} height={36} />
           <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center">
+            <DropdownMenuTrigger className="flex items-center gap-3">
               Jajang
               <IoIosArrowDown />
             </DropdownMenuTrigger>
@@ -99,7 +107,7 @@ export default function Navbar() {
               <DropdownMenuItem>Profile</DropdownMenuItem>
               <DropdownMenuItem>Billing</DropdownMenuItem>
               <DropdownMenuItem>Team</DropdownMenuItem>
-              <DropdownMenuItem>Subscription</DropdownMenuItem>
+              <DropdownMenuItem>Log out</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
