@@ -8,6 +8,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { Button } from '../ui/button';
 import { MdEmail } from 'react-icons/md';
 import { RiMenu5Fill } from 'react-icons/ri';
 import { IoMdSettings } from 'react-icons/io';
@@ -17,15 +18,18 @@ import Logo from '../../../public/img/logo-hexa.svg';
 import LogoAvatar from '../../../public/img/ghost.jpg';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { Button } from '../ui/button';
 
-export default function Navbar() {
+interface NavbarProps {
+  toggleSidebar: () => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
   return (
     <div className="!fixed grid grid-cols-[1fr_1fr_2fr] py-3 justify-between px-10 h-max !w-full bg-white z-10">
       <div className="flex justify-between items-center pr-16">
         <Image src={Logo} alt="" />
         <div className="">
-          <RiMenu5Fill className="w-6 h-6" />
+          <RiMenu5Fill className="w-6 h-6" onClick={toggleSidebar} />
         </div>
       </div>
 
@@ -48,6 +52,11 @@ export default function Navbar() {
               <div className="flex gap-3">
                 <Button>Light</Button>
                 <Button>Dark</Button>
+              </div>
+              <h1 className="font-semibold">Navbar Type</h1>
+              <div className="flex gap-3">
+                <Button>Top</Button>
+                <Button>Bottom</Button>
               </div>
             </SheetHeader>
           </SheetContent>
@@ -114,4 +123,6 @@ export default function Navbar() {
       </div>
     </div>
   );
-}
+};
+
+export default Navbar;
