@@ -8,12 +8,12 @@
 }
 
 .children-anim {
-  transition: margin-left 0.3s ease-in-out; 
+  transition: margin-left 0.3s ease-in-out;
 }
 
 .childrenAnimHidden {
   width: 100%;
-  transition: width 0.3s ease-in-out; 
+  transition: width 0.3s ease-in-out;
 }
 
 .children-anim-hidden {

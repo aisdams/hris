@@ -1,9 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import { format } from 'date-fns';
 import {
   DropdownMenu,
-  DropdownMenuCheckboxItem,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuLabel,
@@ -23,8 +23,15 @@ import {
   useReactTable,
 } from '@tanstack/react-table';
 import { Button } from '@/components/ui/button';
+import { MdOutlineAllInbox } from 'react-icons/md';
+import { LiaShareAltSolid } from 'react-icons/lia';
+import { Calendar } from '@/components/ui/calendar';
+import { IoDocumentOutline } from 'react-icons/io5';
 import { Checkbox } from '@/components/ui/checkbox';
 import { FaAngleDown, FaPlus } from 'react-icons/fa';
+import { HiOutlineDocumentPlus } from 'react-icons/hi2';
+import { Calendar as CalendarIcon } from 'lucide-react';
+import { FaChevronDown, FaRegTrashAlt, FaSearch } from 'react-icons/fa';
 import { ArrowUpDown, Check, ChevronsUpDown, MoreHorizontal } from 'lucide-react';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { MdArrowForwardIos, MdDownload, MdOutlineDateRange } from 'react-icons/md';
@@ -175,14 +182,46 @@ export const columns: ColumnDef<Payment>[] = [
   },
 ];
 
-export default function SetSalary() {
+export default function AccountStatement() {
   const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState('');
   const [date, setDate] = React.useState<Date>();
+  const [value, setValue] = React.useState('');
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
+  const reports = [
+    {
+      title: 'Report',
+      icon: IoDocumentOutline,
+      paragraf: 'Income vs Expense Summary',
+    },
+    {
+      title: 'Transaction Type',
+      icon: LiaShareAltSolid,
+      paragraf: 'Income',
+    },
+    {
+      title: 'Duration',
+      icon: MdOutlineDateRange,
+      paragraf: 'Dec-2023 to Jul-2023',
+    },
+    {
+      title: 'Benjamin Adams',
+      icon: MdOutlineAllInbox,
+      paragraf: 'Total Credit : $1,500.00',
+    },
+    {
+      title: 'Chisom Latifat',
+      icon: MdOutlineAllInbox,
+      paragraf: 'Total Credit : $1,200.00',
+    },
+    {
+      title: 'Earl Hane MD',
+      icon: MdOutlineAllInbox,
+      paragraf: 'Total Credit : $500.00',
+    },
+  ];
 
   const table = useReactTable({
     data,
@@ -202,17 +241,124 @@ export default function SetSalary() {
       rowSelection,
     },
   });
+
   return (
     <div className="w-full">
-      <div className="flex w-full justify-between pt-10 items-center">
+      <div className="flex w-full justify-between pt-10 items-center relative">
         <div className="grid">
-          <h1 className="font-semibold mb-3 text-xl">Manage Employee Salary</h1>
+          <h1 className="font-semibold mb-3 text-xl">Manage Account Statement</h1>
           <div className="flex items-center gap-3">
             <Link href="/">Dashboard</Link>
             <MdArrowForwardIos className="text-xs" />
-            <h1>Manage Employee Salary</h1>
+            <h1>Manage Account Statement</h1>
           </div>
         </div>
+        <div className="flex gap-3">
+          <Button className="bg-purple-500 text-white px-2 w-9 h-9 rounded-md">
+            <MdDownload />
+          </Button>
+          <Button className="bg-purple-500 text-white px-2 w-9 h-9 rounded-md">
+            <HiOutlineDocumentPlus />
+          </Button>
+        </div>
+      </div>
+
+      <div className="my-10">
+        <div className="flex items-center gap-3 justify-end">
+          <div className="grid"></div>
+          <div className="flex gap-3">
+            <div className="grid">
+              <h1>Start Month</h1>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    className={cn(
+                      'w-[280px] border border-gray-500 bg-transparent hover:bg-transparent justify-start text-left font-normal',
+                      !date && 'text-muted-foreground',
+                    )}
+                  >
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    {date ? format(date, 'PPP') : <span>Pick a date</span>}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0">
+                  <Calendar mode="single" selected={date} onSelect={setDate} initialFocus />
+                </PopoverContent>
+              </Popover>
+            </div>
+            <div className="grid">
+              <h1>End Month</h1>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    className={cn(
+                      'w-[280px] border border-gray-500 bg-transparent hover:bg-transparent justify-start text-left font-normal',
+                      !date && 'text-muted-foreground',
+                    )}
+                  >
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    {date ? format(date, 'PPP') : <span>Pick a date</span>}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0">
+                  <Calendar mode="single" selected={date} onSelect={setDate} initialFocus />
+                </PopoverContent>
+              </Popover>
+            </div>
+            <div className="grid">
+              <h1 className="text-sm mb-2">Account</h1>
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex px-3 w-[160px] border border-gray-500 bg-transparent hover:bg-transparent text-left font-normal justify-between rounded-md h-10 items-center pt-1">
+                  All <FaChevronDown />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuLabel>Lorem, ipsum.</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>Lorem, ipsum.</DropdownMenuItem>
+                  <DropdownMenuItem>Lorem, ipsum.</DropdownMenuItem>
+                  <DropdownMenuItem>Lorem, ipsum.</DropdownMenuItem>
+                  <DropdownMenuItem>Lorem, ipsum.</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+
+            <div className="grid">
+              <h1 className="text-sm mb-2">Type</h1>
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex px-3 w-[160px] border border-gray-500 bg-transparent hover:bg-transparent text-left text-sm font-normal justify-between rounded-md h-10 items-center pt-1">
+                  Select Department <FaChevronDown />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>Income</DropdownMenuItem>
+                  <DropdownMenuItem>Expense</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+          </div>
+          <div className="flex gap-2 items-center mt-5">
+            <Button className="bg-purple-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
+              <FaSearch />
+            </Button>
+            <Button className="bg-red-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
+              <FaRegTrashAlt />
+            </Button>
+          </div>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-3 gap-6 my-20 mx-auto justify-between">
+        {reports.map((report, idx) => (
+          <div className="flex items-center gap-5 bg-gray-300/5 px-3 py-1 rounded-md" key={idx}>
+            <div className="bg-purple-500 px-3 py-2 rounded-xl text-white">
+              <span>{React.createElement(report.icon, { size: 28 })}</span>
+            </div>
+            <div className="">
+              <h1>{report.title}</h1>
+              <p>{report.paragraf}</p>
+            </div>
+          </div>
+        ))}
       </div>
 
       <div className="mt-14">

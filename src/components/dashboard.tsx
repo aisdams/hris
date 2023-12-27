@@ -96,7 +96,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="w-full">
+    <div className="w-full !mt-20">
       <h1 className="font-semibold mb-8 text-xl">Dashboard</h1>
       <div className="grid grid-cols-1 gap-8 w-full md:!grid md:grid-cols-2 ">
         {dataHr.map((datahr, idx) => (

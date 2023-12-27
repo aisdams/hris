@@ -20,7 +20,7 @@ export default function Sidebar() {
   };
 
   return (
-    <ScrollArea className="!fixed w-[22%] !h-screen mt-20 shadow-2xl">
+    <ScrollArea className="!fixed w-[22%] !h-screen shadow-2xl pt-[5rem]">
       {sideBarData.map((sidebar, idx) => (
         <div key={idx} className="grid pl-5 dark:bg-[#020817]">
           <ul>
@@ -45,11 +45,11 @@ export default function Sidebar() {
                     <div key={subIdx}>
                       <li>
                         {subItem.link ? (
-                          <Link href={subItem.link} className="flex gap-5 ml-5 items-center">
+                          <Link href={subItem.link} className="flex gap-5 ml-10 items-center">
                             {subItem.title}
                           </Link>
                         ) : (
-                          <span className="flex gap-5 ml-5 items-center" onClick={() => handleSubMenuClickT(idx)}>
+                          <span className="flex gap-5 ml-10 items-center" onClick={() => handleSubMenuClickT(idx)}>
                             {subItem.title}
                             <IoIosArrowDown className="" />
                           </span>
@@ -60,7 +60,7 @@ export default function Sidebar() {
                             {subItem.submenu.map((children, idc) => (
                               <li key={idc}>
                                 {children.link ? (
-                                  <Link href={children.link} className="flex gap-5 ml-10 mt-1 items-center">
+                                  <Link href={children.link} className="flex gap-5 ml-14 mt-1 items-center">
                                     {children.title}
                                   </Link>
                                 ) : (

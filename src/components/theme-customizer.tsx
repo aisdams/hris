@@ -191,9 +191,6 @@ function CopyCodeButton() {
       )}
 
       <Dialog>
-        <DialogTrigger asChild>
-          <Button className="sticky bottom-0 hidden font-bold rounded md:flex">Copy code</Button>
-        </DialogTrigger>
         <DialogContent className="max-w-2xl outline-none">
           <DialogHeader>
             <DialogTitle>Theme</DialogTitle>

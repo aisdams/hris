@@ -35,7 +35,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             isSidebarVisible ? 'ml-1/5' : ''
           } p-4`}
         >
-          <div className={styles.childrenAnim}>{children}</div>
+          <div className={`!mt-10 ml-5 ${styles.childrenAnim}`}>{children}</div>
         </div>
       </div>
     </div>

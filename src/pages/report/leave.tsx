@@ -201,7 +201,7 @@ export default function Leave() {
         </div>
       </div>
 
-      <div className="w-full mt-10">
+      <div className="w-full my-10">
         <div className="grid grid-cols-2 gap-3 items-center">
           <div className="flex items-center gap-3">
             <div className="bg-purple-500 text-white px-2 w-10 h-10 rounded-md grid items-center">

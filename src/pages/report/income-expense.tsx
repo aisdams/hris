@@ -91,55 +91,72 @@ export default function IncomeExpense() {
       </div>
 
       <div className="my-10">
-        <div className="grid grid-cols-3 items-end justify-end">
-          <div className="grid">
-            <h1>Start Month</h1>
+        <div className="grid grid-cols-2">
+          <div className="grid" />
+          <div className="flex justify-end items-center gap-5">
+            <div className="grid">
+              <h1>Start Month</h1>
 
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button
-                  className={cn(
-                    'w-[280px] border border-gray-500 bg-transparent hover:bg-transparent justify-start text-left font-normal',
-                    !date && 'text-muted-foreground',
-                  )}
-                >
-                  <CalendarIcon className="mr-2 h-4 w-4" />
-                  {date ? format(date, 'PPP') : <span>Pick a date</span>}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0">
-                <Calendar mode="single" selected={date} onSelect={setDate} initialFocus />
-              </PopoverContent>
-            </Popover>
-          </div>
-          <div className="grid">
-            <h1>End Month</h1>
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button
-                  className={cn(
-                    'w-[280px] border border-gray-500 bg-transparent hover:bg-transparent justify-start text-left font-normal',
-                    !date && 'text-muted-foreground',
-                  )}
-                >
-                  <CalendarIcon className="mr-2 h-4 w-4" />
-                  {date ? format(date, 'PPP') : <span>Pick a date</span>}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0">
-                <Calendar mode="single" selected={date} onSelect={setDate} initialFocus />
-              </PopoverContent>
-            </Popover>
-          </div>
-          <div className="flex gap-2">
-            <Button className="bg-purple-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
-              <FaSearch />
-            </Button>
-            <Button className="bg-red-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
-              <FaRegTrashAlt />
-            </Button>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    className={cn(
+                      'w-[280px] border border-gray-500 bg-transparent hover:bg-transparent justify-start text-left font-normal',
+                      !date && 'text-muted-foreground',
+                    )}
+                  >
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    {date ? format(date, 'PPP') : <span>Pick a date</span>}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0">
+                  <Calendar mode="single" selected={date} onSelect={setDate} initialFocus />
+                </PopoverContent>
+              </Popover>
+            </div>
+            <div className="grid">
+              <h1>End Month</h1>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    className={cn(
+                      'w-[280px] border border-gray-500 bg-transparent hover:bg-transparent justify-start text-left font-normal',
+                      !date && 'text-muted-foreground',
+                    )}
+                  >
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    {date ? format(date, 'PPP') : <span>Pick a date</span>}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0">
+                  <Calendar mode="single" selected={date} onSelect={setDate} initialFocus />
+                </PopoverContent>
+              </Popover>
+            </div>
+            <div className="flex gap-2 items-center mt-5">
+              <Button className="bg-purple-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
+                <FaSearch />
+              </Button>
+              <Button className="bg-red-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
+                <FaRegTrashAlt />
+              </Button>
+            </div>
           </div>
         </div>
+      </div>
+
+      <div className="flex my-20 mx-auto justify-between">
+        {reports.map((report, idx) => (
+          <div className="flex items-center gap-5 bg-gray-300/5 px-3 py-1 rounded-md" key={idx}>
+            <div className="bg-purple-500 px-3 py-2 rounded-xl text-white">
+              <span>{React.createElement(report.icon, { size: 28 })}</span>
+            </div>
+            <div className="">
+              <h1>{report.title}</h1>
+              <p>{report.paragraf}</p>
+            </div>
+          </div>
+        ))}
       </div>
 
       <ReactApexChart options={options} series={series} type="bar" height={350} />
