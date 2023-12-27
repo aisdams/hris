@@ -31,12 +31,16 @@ const sideBarData = [
             link: '/report/income-expense',
           },
           {
-            title: 'Manage Monthly Attendance',
-            link: '/report/monthly/attendance',
+            title: 'Monthly Attendance',
+            link: '/report/monthly-attendance',
           },
           {
             title: 'Leave',
             link: '/report/leave',
+          },
+          {
+            title: 'Account Statement',
+            link: '/report//account-statement',
           },
           {
             title: 'Payroll',
@@ -104,7 +108,7 @@ const sideBarData = [
 
         submenu: [
           {
-            title: 'Marked Attendance',
+            title: 'Attendance',
             link: '/timesheet/attendance/marked-attendance',
           },
           {
@@ -187,31 +191,43 @@ const sideBarData = [
     sub: [
       {
         title: 'Award',
-        link: '/award',
+        link: '/hr-admin/award',
       },
       {
         title: 'Transfer',
-        link: '/transfer',
+        link: '/hr-admin/transfer',
       },
       {
         title: 'Resignation',
-        link: '/resignation',
+        link: '/hr-admin/resignation',
       },
       {
         title: 'Trip',
-        link: '/travel',
+        link: '/hr-admin/travel',
       },
       {
         title: 'Promotion',
-        link: '/promotion',
+        link: '/hr-admin/promotion',
       },
       {
-        title: 'Complaint',
-        link: '/complaint',
+        title: 'Complaints',
+        link: '/hr-admin/complaints',
       },
       {
         title: 'Warning',
-        link: '/warning',
+        link: '/hr-admin/warning',
+      },
+      {
+        title: 'Termination',
+        link: '/hr-admin/termination',
+      },
+      {
+        title: 'Announcement',
+        link: '/hr-admin/announcement',
+      },
+      {
+        title: 'Holidays',
+        link: '/hr-admin/Holidays',
       },
     ],
   },
@@ -246,6 +262,10 @@ const sideBarData = [
       {
         title: 'Interview Schedule',
         link: '/recruitment/interview-schedule',
+      },
+      {
+        title: 'Careear',
+        link: '/recruitment/careear',
       },
     ],
   },

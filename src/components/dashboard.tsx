@@ -98,14 +98,14 @@ export default function Dashboard() {
   return (
     <div className="w-full">
       <h1 className="font-semibold mb-8 text-xl">Dashboard</h1>
-      <div className="grid grid-cols-2 gap-8 w-full md:!grid md:grid-cols-1 ">
+      <div className="grid grid-cols-1 gap-8 w-full md:!grid md:grid-cols-2 ">
         {dataHr.map((datahr, idx) => (
           <div key={idx} className="w-full">
             <div className="flex justify-between">
               <div className="grid">
                 <h1 className="font-bold text-xl">{datahr.total}</h1>
                 <h1 className="font-extralight text-lg">{datahr.paragraf}</h1>
-                <div className="flex items-center gap-5"> 
+                <div className="flex items-center gap-5">
                   <span className="text-green-500">{React.createElement(datahr.icon, { size: 14 })}</span>
                   <p>{datahr.rate} Since last month</p>
                 </div>
@@ -177,12 +177,8 @@ export default function Dashboard() {
         <ReactApexChart options={optionsTwo} series={seriesTwo} type="bar" height={350} />
       </div>
 
-
       <div className="grid grid-cols-2">
-        <div className="">
-          
-        </div>
-
+        <div className=""></div>
       </div>
     </div>
   );

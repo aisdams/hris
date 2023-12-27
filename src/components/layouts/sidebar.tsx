@@ -20,9 +20,9 @@ export default function Sidebar() {
   };
 
   return (
-    <ScrollArea className="!fixed w-[22%] !h-screen mt-20 shadow-lg">
+    <ScrollArea className="!fixed w-[22%] !h-screen mt-20 shadow-2xl">
       {sideBarData.map((sidebar, idx) => (
-        <div key={idx} className="grid pl-5 bg-[#020817]">
+        <div key={idx} className="grid pl-5 dark:bg-[#020817]">
           <ul>
             <li>
               {sidebar.sub ? (
