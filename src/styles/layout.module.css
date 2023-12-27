@@ -1,26 +1,21 @@
 .sidebarContainer {
-  width: 20%; /* Atur lebar sesuai kebutuhan Anda */
-  background-color: #ccc; /* Warna latar belakang sidebar */
-  transition: transform 0.3s ease-in-out; /* Efek transisi untuk perubahan transformasi (misalnya: penggeseran) */
+  width: 22%;
+  transition: transform 0.3s ease-in-out;
 }
 
-/* Class untuk menghilangkan sidebar dengan efek animasi */
 .hidden {
   transform: translateX(-100%);
-  /* Anda dapat mengatur nilai transform sesuai dengan kebutuhan Anda */
 }
 
-/* Transisi saat children bergerak ke kiri */
 .children-anim {
-  transition: margin-left 0.3s ease-in-out; /* Sesuaikan nilai sesuai kebutuhan Anda */
+  transition: margin-left 0.3s ease-in-out; 
 }
 
 .childrenAnimHidden {
-  width: 100%; /* Atur lebar sesuai kebutuhan Anda */
-  transition: width 0.3s ease-in-out; /* Animasi perubahan lebar */
+  width: 100%;
+  transition: width 0.3s ease-in-out; 
 }
 
-/* Atur margin-left saat sidebar disembunyikan */
 .children-anim-hidden {
-  margin-left: 0; /* Atur nilai margin kiri sesuai kebutuhan Anda */
+  margin-left: 0;
 }

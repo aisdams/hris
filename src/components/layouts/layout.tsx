@@ -18,15 +18,24 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     setIsSidebarVisible(!isSidebarVisible);
   };
   return (
-    <div className="!h-screen">
+    <div className="h-screen">
       <Navbar toggleSidebar={toggleSidebar} />
-      <div className="flex">
-        <div className={`w-1/5 ${styles.sidebarContainer} ${isSidebarVisible ? '' : styles.hidden}`}>
-          <Sidebar />
-        </div>
-        <div className={`w-4/5 p-4 ${styles.childrenContainer} ${isSidebarVisible ? '' : styles.childrenAnimHidden}`}>
-          <div className={`pl-10 pt-14 justify-start pr-8 ml-2 w-full ${styles.childrenAnim}`}>{children}</div>
-          {/* <Footer /> */}
+      <div className="flex flex-1">
+        {isSidebarVisible && (
+          <div
+            className={`!h-screen bg-white dark:bg-[#020817] ${styles.sidebarContainer} ${
+              isSidebarVisible ? '' : styles.hidden
+            }`}
+          >
+            <Sidebar />
+          </div>
+        )}
+        <div
+          className={`w-[78%] ${styles.childrenContainer} ${isSidebarVisible ? '' : styles.childrenAnimHidden} ${
+            isSidebarVisible ? 'ml-1/5' : ''
+          } p-4`}
+        >
+          <div className={styles.childrenAnim}>{children}</div>
         </div>
       </div>
     </div>

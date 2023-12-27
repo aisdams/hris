@@ -6,6 +6,12 @@ import { IoIosArrowDown } from 'react-icons/io';
 import { ScrollArea } from '@/components/ui/scroll-area';
 
 export default function Sidebar() {
+  const [showSubMenu, setShowSubMenu] = useState(false);
+
+  const handleSubMenuClickT = (idx: any) => {
+    setShowSubMenu(!showSubMenu);
+  };
+
   const [activeSubMenu, setActiveSubMenu] = useState(null);
   const [active, setActive] = useState(false);
 
@@ -14,9 +20,9 @@ export default function Sidebar() {
   };
 
   return (
-    <ScrollArea className="relative w-full pt-14 bg-white !h-screen shadow-[0px_10px_1px_rgba(221,_221,_221,_1),_0_10px_20px_rgba(204,_204,_204,_1)]">
+    <ScrollArea className="!fixed w-[22%] !h-screen mt-20 shadow-lg">
       {sideBarData.map((sidebar, idx) => (
-        <div key={idx} className="grid pl-5">
+        <div key={idx} className="grid pl-5 bg-[#020817]">
           <ul>
             <li>
               {sidebar.sub ? (
@@ -43,23 +49,27 @@ export default function Sidebar() {
                             {subItem.title}
                           </Link>
                         ) : (
-                          <span className="flex gap-5 ml-5 items-center" onClick={() => handleSubMenuClick(idx)}>
+                          <span className="flex gap-5 ml-5 items-center" onClick={() => handleSubMenuClickT(idx)}>
                             {subItem.title}
                             <IoIosArrowDown className="" />
                           </span>
                         )}
 
-                        {subItem.submenu?.map((children, idc) => (
-                          <li key={idc}>
-                            {children.link ? (
-                              <Link href={children.link} className="flex gap-5 ml-10 mt-1 items-center">
-                                {children.title}
-                              </Link>
-                            ) : (
-                              <span className="flex gap-5 ml-5 items-center">{children.title}</span>
-                            )}
-                          </li>
-                        ))}
+                        {subItem.submenu && showSubMenu && (
+                          <ul>
+                            {subItem.submenu.map((children, idc) => (
+                              <li key={idc}>
+                                {children.link ? (
+                                  <Link href={children.link} className="flex gap-5 ml-10 mt-1 items-center">
+                                    {children.title}
+                                  </Link>
+                                ) : (
+                                  <span className="flex gap-5 ml-5 items-center">{children.title}</span>
+                                )}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
                       </li>
                     </div>
                   ))}

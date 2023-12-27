@@ -1,4 +1,5 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import {
   DropdownMenu,
@@ -16,16 +17,21 @@ import { IoIosArrowDown } from 'react-icons/io';
 import { FaPencilAlt, FaBell } from 'react-icons/fa';
 import Logo from '../../../public/img/logo-hexa.svg';
 import LogoAvatar from '../../../public/img/ghost.jpg';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { useTheme } from 'next-themes';
 
 interface NavbarProps {
   toggleSidebar: () => void;
 }
 
 const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
+  const { theme, setTheme } = useTheme();
+
   return (
-    <div className="!fixed grid grid-cols-[1fr_1fr_2fr] py-3 justify-between px-10 h-max !w-full bg-white z-10">
+    <div
+      className="!fixed grid grid-cols-[1fr_1fr_2fr] py-3 justify-between px-10 h-max !w-full bg-white 
+    dark:bg-[#333333] z-10"
+    >
       <div className="flex justify-between items-center pr-16">
         <Image src={Logo} alt="" />
         <div className="">
@@ -50,14 +56,15 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
               </div>
               <h1 className="font-semibold">Sidebar Type</h1>
               <div className="flex gap-3">
-                <Button>Light</Button>
-                <Button>Dark</Button>
+                <Button onClick={() => setTheme('dark')}>Dark</Button>
+                <Button onClick={() => setTheme('light')}>Light</Button>
               </div>
               <h1 className="font-semibold">Navbar Type</h1>
               <div className="flex gap-3">
                 <Button>Top</Button>
                 <Button>Bottom</Button>
               </div>
+              <div className="customize"></div>
             </SheetHeader>
           </SheetContent>
         </Sheet>
