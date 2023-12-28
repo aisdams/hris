@@ -144,6 +144,13 @@ export function Customizer({ className }: { className?: string }) {
       )}
     >
       <CustomizerHeader />
+      <div>
+        <h1>Layout Type</h1>
+        <div className="flex gap-3">
+          <Button>LTR</Button>
+          <Button>RTL</Button>
+        </div>
+      </div>
       <div className="flex flex-col flex-1 space-y-4 md:space-y-6">
         <StyleSection />
         <ColorSection />

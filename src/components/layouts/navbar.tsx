@@ -1,5 +1,6 @@
 'use client';
 import Image from 'next/image';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -22,6 +23,7 @@ import LogoAvatar from '../../../public/img/ghost.jpg';
 import { Customizer, ThemeCustomizer } from '@/components/theme-customizer';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { ThemesTabs } from '../tabs';
+import { Input } from '../ui/input';
 
 interface NavbarProps {
   toggleSidebar: () => void;
@@ -72,32 +74,95 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
       </div>
 
       <div className="flex justify-end mx-0 items-center gap-10">
-        <DropdownMenu>
-          <DropdownMenuTrigger>
+        <Popover>
+          <PopoverTrigger>
             <MdEmail />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem>Billing</DropdownMenuItem>
-            <DropdownMenuItem>Team</DropdownMenuItem>
-            <DropdownMenuItem>Subscription</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-        <DropdownMenu>
-          <DropdownMenuTrigger>
+          </PopoverTrigger>
+          <PopoverContent>
+            <div>
+              <div className="text-center bg-gray-800/40 rounded-sm py-1">
+                <h1>Messages</h1>
+              </div>
+              <div className="mt-5 gap-3 grid">
+                <div className="flex gap-3">
+                  <Image src={LogoAvatar} alt="" className="rounded-full w-12 h-12" />
+                  <div className="grid">
+                    <div className="flex justify-between items-center gap-3">
+                      <h1>App Developer</h1>
+                      <h1 className="text-green-500 text-xs">2 hrs ago</h1>
+                    </div>
+                    <p className="font-light text-xs">Lorem ipsum dolor sit..</p>
+                  </div>
+                </div>
+                <div className="flex gap-3">
+                  <Image src={LogoAvatar} alt="" className="rounded-full w-12 h-12" />
+                  <div className="grid">
+                    <div className="flex justify-between items-center gap-3">
+                      <h1>App Developer</h1>
+                      <h1 className="text-green-500 text-xs">2 hrs ago</h1>
+                    </div>
+                    <p className="font-light text-xs">Lorem ipsum dolor sit..</p>
+                  </div>
+                </div>
+                <div className="flex gap-3">
+                  <Image src={LogoAvatar} alt="" className="rounded-full w-12 h-12" />
+                  <div className="grid">
+                    <div className="flex justify-between items-center gap-3">
+                      <h1>App Developer</h1>
+                      <h1 className="text-green-500 text-xs">2 hrs ago</h1>
+                    </div>
+                    <p className="font-light text-xs">Lorem ipsum dolor sit..</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </PopoverContent>
+        </Popover>
+
+        <Popover>
+          <PopoverTrigger>
             <FaBell />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuLabel>My Account</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem>Profile</DropdownMenuItem>
-            <DropdownMenuItem>Billing</DropdownMenuItem>
-            <DropdownMenuItem>Team</DropdownMenuItem>
-            <DropdownMenuItem>Subscription</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+          </PopoverTrigger>
+          <PopoverContent>
+            <div>
+              <div className="text-center bg-gray-800/40 rounded-sm py-1">
+                <h1>Notification</h1>
+              </div>
+              <div className="mt-5 gap-3 grid">
+                <div className="flex gap-3">
+                  <Image src={LogoAvatar} alt="" className="rounded-full w-12 h-12" />
+                  <div className="grid">
+                    <div className="flex justify-between items-center gap-3">
+                      <h1>App Developer</h1>
+                      <h1 className="text-green-500 text-xs">2 hrs ago</h1>
+                    </div>
+                    <p className="font-light text-xs">Lorem ipsum dolor sit..</p>
+                  </div>
+                </div>
+                <div className="flex gap-3">
+                  <Image src={LogoAvatar} alt="" className="rounded-full w-12 h-12" />
+                  <div className="grid">
+                    <div className="flex justify-between items-center gap-3">
+                      <h1>App Developer</h1>
+                      <h1 className="text-green-500 text-xs">2 hrs ago</h1>
+                    </div>
+                    <p className="font-light text-xs">Lorem ipsum dolor sit..</p>
+                  </div>
+                </div>
+                <div className="flex gap-3">
+                  <Image src={LogoAvatar} alt="" className="rounded-full w-12 h-12" />
+                  <div className="grid">
+                    <div className="flex justify-between items-center gap-3">
+                      <h1>App Developer</h1>
+                      <h1 className="text-green-500 text-xs">2 hrs ago</h1>
+                    </div>
+                    <p className="font-light text-xs">Lorem ipsum dolor sit..</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </PopoverContent>
+        </Popover>
         <DropdownMenu>
           <DropdownMenuTrigger>
             <IoMdSettings />

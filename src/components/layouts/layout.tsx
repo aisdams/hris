@@ -17,15 +17,36 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const toggleSidebar = () => {
     setIsSidebarVisible(!isSidebarVisible);
   };
+
+  const [showSidebar, setShowSidebar] = useState(true);
+  useEffect(() => {
+    const handleResize = () => {
+      const screenWidth = window.innerWidth;
+      if (screenWidth < 1200) {
+        setShowSidebar(false);
+      } else {
+        setShowSidebar(true);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <div className="h-screen">
       <Navbar toggleSidebar={toggleSidebar} />
       <div className="flex flex-1">
-        {isSidebarVisible && (
+        {isSidebarVisible && showSidebar && (
           <div
             className={`!h-screen bg-white dark:bg-[#020817] ${styles.sidebarContainer} ${
               isSidebarVisible ? '' : styles.hidden
-            }`}
+            }  ${showSidebar ? '' : styles.hidden}`}
           >
             <Sidebar />
           </div>
@@ -33,9 +54,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <div
           className={`w-[78%] ${styles.childrenContainer} ${isSidebarVisible ? '' : styles.childrenAnimHidden} ${
             isSidebarVisible ? 'ml-1/5' : ''
-          } p-4`}
+          } ${showSidebar ? '' : styles.childrenAnimHidden} p-4`}
         >
-          <div className={`!mt-10 mr-9 ml-20 ${styles.childrenAnim}`}>{children}</div>
+          <div className={`!mt-10 mr-9 ml-5 ${styles.childrenAnim}`}>{children}</div>
         </div>
       </div>
     </div>
