@@ -27,8 +27,9 @@ import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Calendar } from '@/components/ui/calendar';
+import { IoDocumentOutline } from 'react-icons/io5';
 import { HiOutlineDocumentPlus } from 'react-icons/hi2';
-import { FaChevronDown, FaRegTrashAlt, FaSearch } from 'react-icons/fa';
+import { FaChevronDown, FaPlus, FaRegTrashAlt, FaSearch } from 'react-icons/fa';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { MdArrowForwardIos, MdDownload, MdOutlineDateRange } from 'react-icons/md';
 import { ArrowUpDown, Calendar as CalendarIcon, ChevronDown, MoreHorizontal } from 'lucide-react';
@@ -155,7 +156,7 @@ export const columns: ColumnDef<Payment>[] = [
   },
 ];
 
-export default function Sec() {
+export default function Timesheet() {
   const [date, setDate] = React.useState<Date>();
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
@@ -184,19 +185,22 @@ export default function Sec() {
     <div className="w-full">
       <div className="flex w-full justify-between pt-10 items-center relative">
         <div className="grid">
-          <h1 className="font-semibold mb-3 text-xl">Manage Timesheet Report</h1>
+          <h1 className="font-semibold mb-3 text-xl">Manage Timesheet</h1>
           <div className="flex items-center gap-3">
             <Link href="/">Dashboard</Link>
             <MdArrowForwardIos className="text-xs" />
-            <h1>Manage Timesheet Report</h1>
+            <h1>Manage Timesheet</h1>
           </div>
         </div>
         <div className="flex gap-3">
           <Button className="bg-purple-500 text-white px-2 w-9 h-9 rounded-md">
-            <MdDownload />
+            <HiOutlineDocumentPlus />
           </Button>
           <Button className="bg-purple-500 text-white px-2 w-9 h-9 rounded-md">
-            <HiOutlineDocumentPlus />
+            <IoDocumentOutline />
+          </Button>
+          <Button className="bg-purple-500 text-white px-2 w-9 h-9 rounded-md">
+            <FaPlus />
           </Button>
         </div>
       </div>
@@ -242,18 +246,17 @@ export default function Sec() {
         </div>
 
         <div className="grid">
-          <h1 className="text-sm mb-2">Branch</h1>
+          <h1 className="text-sm mb-2">Employee</h1>
           <DropdownMenu>
             <DropdownMenuTrigger className="flex px-3 border border-gray-500 bg-transparent hover:bg-transparent text-left font-normal justify-between rounded-md h-10 items-center pt-1">
               All <FaChevronDown />
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>China</DropdownMenuItem>
-              <DropdownMenuItem>India</DropdownMenuItem>
-              <DropdownMenuItem>Canada</DropdownMenuItem>
-              <DropdownMenuItem>Greece</DropdownMenuItem>
+              <DropdownMenuItem>James</DropdownMenuItem>
+              <DropdownMenuItem>Lorem</DropdownMenuItem>
+              <DropdownMenuItem>Lorem</DropdownMenuItem>
+              <DropdownMenuItem>Lorem</DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

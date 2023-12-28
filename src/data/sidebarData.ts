@@ -227,7 +227,7 @@ const sideBarData = [
       },
       {
         title: 'Holidays',
-        link: '/hr-admin/Holidays',
+        link: '/hr-admin/holidays',
       },
     ],
   },
@@ -249,7 +249,7 @@ const sideBarData = [
       },
       {
         title: 'Job Candidate',
-        link: '/recruitment/candidates-job-applications',
+        link: '/recruitment/job-candidates',
       },
       {
         title: 'Job On-Boarding',
