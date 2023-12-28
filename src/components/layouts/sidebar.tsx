@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Navbar from './navbar';
 import sideBarData from '@/data/sidebarData';
@@ -7,6 +7,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 
 export default function Sidebar() {
   const [showSubMenu, setShowSubMenu] = useState(false);
+  const [showSidebar, setShowSidebar] = useState(true);
 
   const handleSubMenuClickT = (idx: any) => {
     setShowSubMenu(!showSubMenu);
@@ -19,8 +20,28 @@ export default function Sidebar() {
     setActiveSubMenu(activeSubMenu === index ? null : index);
   };
 
+  useEffect(() => {
+    const handleResize = () => {
+      const screenWidth = window.innerWidth;
+      if (screenWidth < 1200) {
+        setShowSidebar(false);
+      } else {
+        setShowSidebar(true);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
-    <ScrollArea className="!fixed w-[22%] !h-screen shadow-2xl pt-[5rem]">
+    {showSidebar && (
+      <ScrollArea className="!fixed w-[22%] !h-screen shadow-2xl pt-[5rem]">
       {sideBarData.map((sidebar, idx) => (
         <div key={idx} className="grid pl-5 dark:bg-[#020817]">
           <ul>
@@ -34,7 +55,7 @@ export default function Sidebar() {
                   <IoIosArrowDown className="" />
                 </div>
               ) : (
-                <Link href={sidebar.link} className="flex gap-5 mb-3 w-full text-left">
+                <Link href={sidebar.link} className="flex gap-5 mb-3 w-full text-left cursor-pointer">
                   <span>{React.createElement(sidebar.icon, { size: 18 })}</span>
                   {sidebar.title}
                 </Link>
@@ -49,7 +70,10 @@ export default function Sidebar() {
                             {subItem.title}
                           </Link>
                         ) : (
-                          <span className="flex gap-5 ml-10 items-center" onClick={() => handleSubMenuClickT(idx)}>
+                          <span
+                            className="flex gap-5 ml-10 items-center cursor-pointer"
+                            onClick={() => handleSubMenuClickT(idx)}
+                          >
                             {subItem.title}
                             <IoIosArrowDown className="" />
                           </span>
@@ -79,6 +103,7 @@ export default function Sidebar() {
           </ul>
         </div>
       ))}
-    </ScrollArea>
+      </ScrollArea>
+    ))}
   );
 }

@@ -52,21 +52,6 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
             <SheetHeader>
               <SheetTitle>Customizer</SheetTitle>
               <SheetDescription>Customize Your Overview Page layout</SheetDescription>
-              <h1 className="font-semibold">Layouts Type</h1>
-              <div className="flex gap-3">
-                <Button>LTR</Button>
-                <Button>RTL</Button>
-              </div>
-              <h1 className="font-semibold">Sidebar Type</h1>
-              <div className="flex gap-3">
-                <Button onClick={() => setTheme('dark')}>Dark</Button>
-                <Button onClick={() => setTheme('light')}>Light</Button>
-              </div>
-              <h1 className="font-semibold">Navbar Type</h1>
-              <div className="flex gap-3">
-                <Button>Top</Button>
-                <Button>Bottom</Button>
-              </div>
               <div className="customize">
                 <ThemeWrapper
                   defaultTheme="zinc"

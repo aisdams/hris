@@ -147,9 +147,7 @@ export function Customizer({ className }: { className?: string }) {
       <div className="flex flex-col flex-1 space-y-4 md:space-y-6">
         <StyleSection />
         <ColorSection />
-        <RadiusSection />
         <ModeSection />
-        <ColorPickerSection />
         <CopyCodeButton />
       </div>
     </ThemeWrapper>

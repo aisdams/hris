@@ -186,11 +186,11 @@ export default function Index() {
     <div className="w-full">
       <div className="flex w-full justify-between pt-10 items-center">
         <div className="grid">
-          <h1 className="font-semibold mb-3 text-xl">Manage Award</h1>
+          <h1 className="font-semibold mb-3 text-xl">Manage Announcement</h1>
           <div className="flex items-center gap-3">
             <Link href="/">Dashboard</Link>
             <MdArrowForwardIos className="text-xs" />
-            <h1>Manage Award</h1>
+            <h1>Manage Announcement</h1>
           </div>
         </div>
         <div className="flex gap-3">

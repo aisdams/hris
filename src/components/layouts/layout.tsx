@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
 import { cn } from '@/lib/utils';
+import { useRouter } from 'next/router';
+import styles from '@/styles/layout.module.css';
 import Footer from '@/components/layouts/footer';
 import Sidebar from '@/components/layouts/sidebar';
 import Navbar from '@/components/layouts/navbar';
-import styles from '@/styles/layout.module.css';
+import React, { useEffect, useState } from 'react';
 
 type LayoutProps = {
   children: React.ReactNode;
@@ -35,7 +35,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             isSidebarVisible ? 'ml-1/5' : ''
           } p-4`}
         >
-          <div className={`!mt-10 ml-5 ${styles.childrenAnim}`}>{children}</div>
+          <div className={`!mt-10 mr-9 ml-20 ${styles.childrenAnim}`}>{children}</div>
         </div>
       </div>
     </div>
