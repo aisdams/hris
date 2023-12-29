@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { HiOutlineDocumentPlus } from 'react-icons/hi2';
 import { MdArrowForwardIos, MdDownload } from 'react-icons/md';
 
-export default function Expense() {
+export default function Index() {
   return (
     <div className="w-full">
       <div className="flex w-full justify-between pt-10 items-center relative">

@@ -1,15 +1,6 @@
+'use client';
 import React from 'react';
 import Link from 'next/link';
-import { cn } from '@/lib/utils';
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -22,38 +13,28 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
-import { Button } from '@/components/ui/button';
-import { MdArrowForwardIos } from 'react-icons/md';
-import { Checkbox } from '@/components/ui/checkbox';
-import { FaAngleDown, FaPlus } from 'react-icons/fa';
-import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { ArrowUpDown, Check, ChevronDown, ChevronsUpDown, MoreHorizontal } from 'lucide-react';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from '@/components/ui/command';
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu';
+import { FaPlus } from 'react-icons/fa';
+import { CgCloseO } from 'react-icons/cg';
 import { Input } from '@/components/ui/input';
-
-const frameworks = [
-  {
-    value: 'next.js',
-    label: 'Next.js',
-  },
-  {
-    value: 'sveltekit',
-    label: 'SvelteKit',
-  },
-  {
-    value: 'nuxt.js',
-    label: 'Nuxt.js',
-  },
-  {
-    value: 'remix',
-    label: 'Remix',
-  },
-  {
-    value: 'astro',
-    label: 'Astro',
-  },
-];
+import { TbCircleCheck } from 'react-icons/tb';
+import { Button } from '@/components/ui/button';
+import { TbClipboardCopy } from 'react-icons/tb';
+import { IoDocumentOutline } from 'react-icons/io5';
+import { Checkbox } from '@/components/ui/checkbox';
+import { HiOutlineDocumentPlus } from 'react-icons/hi2';
+import { IoIosRemoveCircleOutline } from 'react-icons/io';
+import { ArrowUpDown, ChevronDown, MoreHorizontal } from 'lucide-react';
+import { MdArrowForwardIos, MdDownload, MdOutlineDateRange } from 'react-icons/md';
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
 const data: Payment[] = [
   {
@@ -177,9 +158,6 @@ export const columns: ColumnDef<Payment>[] = [
 ];
 
 export default function Index() {
-  const [open, setOpen] = React.useState(false);
-  const [value, setValue] = React.useState('');
-  const [date, setDate] = React.useState<Date>();
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
@@ -203,15 +181,16 @@ export default function Index() {
       rowSelection,
     },
   });
+
   return (
     <div className="w-full">
-      <div className="flex w-full justify-between pt-10 items-center relative">
+      <div className="flex w-full justify-between pt-10 items-center">
         <div className="grid">
-          <h1 className="font-semibold mb-3 text-xl">Manage Indicator</h1>
+          <h1 className="font-semibold mb-3 text-xl">Manage Job Onboard</h1>
           <div className="flex items-center gap-3">
             <Link href="/">Dashboard</Link>
             <MdArrowForwardIos className="text-xs" />
-            <h1>Indicator</h1>
+            <h1>Manage Job Onboard</h1>
           </div>
         </div>
         <div className="flex gap-3">
@@ -221,65 +200,7 @@ export default function Index() {
         </div>
       </div>
 
-      <div className="flex justify-between mt-10">
-        <div className="flex">
-          <div className="flex items-center gap-3">
-            <div className="border border-gray-400 px-5 py-1 rounded-md">
-              <DropdownMenu>
-                <DropdownMenuTrigger className="flex gap-3 items-center">
-                  10 <FaAngleDown />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>Profile</DropdownMenuItem>
-                  <DropdownMenuItem>Billing</DropdownMenuItem>
-                  <DropdownMenuItem>Team</DropdownMenuItem>
-                  <DropdownMenuItem>Subscription</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-            </div>
-            <h1>entries per page</h1>
-          </div>
-        </div>
-
-        <Popover open={open} onOpenChange={setOpen}>
-          <PopoverTrigger asChild>
-            <Button
-              variant="outline"
-              role="combobox"
-              aria-expanded={open}
-              className="w-[200px] border border-gray-400 justify-between"
-            >
-              {value ? frameworks.find((framework) => framework.value === value)?.label : 'Search...'}
-              <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent className="w-[200px] p-0">
-            <Command>
-              <CommandInput placeholder="Search framework..." />
-              <CommandEmpty>No framework found.</CommandEmpty>
-              <CommandGroup>
-                {frameworks.map((framework) => (
-                  <CommandItem
-                    key={framework.value}
-                    value={framework.value}
-                    onSelect={(currentValue) => {
-                      setValue(currentValue === value ? '' : currentValue);
-                      setOpen(false);
-                    }}
-                  >
-                    <Check className={cn('mr-2 h-4 w-4', value === framework.value ? 'opacity-100' : 'opacity-0')} />
-                    {framework.label}
-                  </CommandItem>
-                ))}
-              </CommandGroup>
-            </Command>
-          </PopoverContent>
-        </Popover>
-      </div>
-
-      <div className="w-full">
+      <div className="w-full mt-14">
         <div className="flex items-center py-4">
           <Input
             placeholder="Filter emails..."

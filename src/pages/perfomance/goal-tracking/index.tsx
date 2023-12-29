@@ -176,7 +176,7 @@ export const columns: ColumnDef<Payment>[] = [
   },
 ];
 
-export default function GoalTracking() {
+export default function Index() {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState('');
   const [date, setDate] = React.useState<Date>();
