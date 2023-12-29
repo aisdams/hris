@@ -8,7 +8,7 @@ export default function Footer() {
         © 2023 <Link href="/">SovWare</Link>
       </h1>
       <div className="">
-        <ul className="flex gap-3">
+        <ul className="flex gap-3 cursor-not-allowed">
           <li>About</li>
           <li>Team</li>
           <li>Contact</li>

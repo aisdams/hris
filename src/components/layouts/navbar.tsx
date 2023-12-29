@@ -18,7 +18,7 @@ import { IoMdSettings } from 'react-icons/io';
 import { ThemeWrapper } from '../theme-wrapper';
 import { IoIosArrowDown } from 'react-icons/io';
 import { FaPencilAlt, FaBell } from 'react-icons/fa';
-import Logo from '../../../public/img/logo-hexa.svg';
+import Logo from '../../../public/img/HrisTem.png';
 import LogoAvatar from '../../../public/img/ghost.jpg';
 import { Customizer, ThemeCustomizer } from '@/components/theme-customizer';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
@@ -38,7 +38,7 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
     z-10 dark:bg-[#020817]"
     >
       <div className="flex justify-between items-center pr-16">
-        <Image src={Logo} alt="" className="dark:brightness-0 dark:invert-[1]" />
+        <Image src={Logo} alt="" className="dark:brightness-0 dark:invert-[1] w-44 h-14" />
         <div className="">
           <RiMenu5Fill className="w-6 h-6" onClick={toggleSidebar} />
         </div>
