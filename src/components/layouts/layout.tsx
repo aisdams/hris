@@ -56,7 +56,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             isSidebarVisible ? 'ml-1/5' : ''
           } ${showSidebar ? '' : styles.childrenAnimHidden} p-4`}
         >
-          <div className={`!mt-10 sm:mr-9 mr-0 ml-5 ${styles.childrenAnim}`}>
+          <div className={`lg:!mt-10 mt-5 sm:mr-9 mr-0 ml-5 ${styles.childrenAnim}`}>
             {children}
             {/* <div className="absolute right-0 bottom-0 !justify-end w-4/5">
               <Footer />
