@@ -97,63 +97,66 @@ export default function EmployeeProfile() {
         </div>
       </div>
 
-      <div className="grid grid-cols-4 my-10 mx-auto justify-center items-center gap-5">
-        <div className="grid">
-          <h1 className="text-sm mb-2">Branch</h1>
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex px-3 w-full border border-gray-500 bg-transparent hover:bg-transparent text-left font-normal justify-between rounded-md h-10 items-center pt-1">
-              All <FaChevronDown />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>China</DropdownMenuItem>
-              <DropdownMenuItem>India</DropdownMenuItem>
-              <DropdownMenuItem>Canada</DropdownMenuItem>
-              <DropdownMenuItem>Greece</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
+      <div className="flex justify-between my-10">
+        <div className="md:flex hidden" />
+        <div className="md:flex gap-5 md:justify-end justify-normal w-full grid">
+          <div className="grid">
+            <h1 className="text-sm mb-2">Branch</h1>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex px-3 w-full md:w-[180px] border border-gray-500 bg-transparent hover:bg-transparent text-left font-normal justify-between rounded-md h-10 items-center pt-1">
+                All <FaChevronDown />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>China</DropdownMenuItem>
+                <DropdownMenuItem>India</DropdownMenuItem>
+                <DropdownMenuItem>Canada</DropdownMenuItem>
+                <DropdownMenuItem>Greece</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
 
-        <div className="grid">
-          <h1 className="text-sm mb-2">Department</h1>
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex px-3 w-full border border-gray-500 bg-transparent hover:bg-transparent text-left text-sm font-normal justify-between rounded-md h-10 items-center pt-1">
-              Select Department <FaChevronDown />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel>Industrials</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>China</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
+          <div className="grid">
+            <h1 className="text-sm mb-2">Department</h1>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex px-3 w-full md:w-[180px] border border-gray-500 bg-transparent hover:bg-transparent text-left text-sm font-normal justify-between rounded-md h-10 items-center pt-1">
+                Select Department <FaChevronDown />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel>Industrials</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>China</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
 
-        <div className="grid">
-          <h1 className="text-sm mb-2">Designation</h1>
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex px-3 w-full border border-gray-500 bg-transparent hover:bg-transparent text-left text-sm font-normal justify-between rounded-md h-10 items-center pt-1">
-              Select Designation <FaChevronDown />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel>Select Designation </DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem></DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
+          <div className="grid">
+            <h1 className="text-sm mb-2">Designation</h1>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex px-3 w-full md:w-[180px] border border-gray-500 bg-transparent hover:bg-transparent text-left text-sm font-normal justify-between rounded-md h-10 items-center pt-1">
+                Select Designation <FaChevronDown />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel>Select Designation </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem></DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
 
-        <div className="flex gap-2 pt-7">
-          <Button className="bg-purple-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
-            <FaSearch />
-          </Button>
-          <Button className="bg-red-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
-            <FaRegTrashAlt />
-          </Button>
+          <div className="flex gap-2 pt-7">
+            <Button className="bg-purple-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
+              <FaSearch />
+            </Button>
+            <Button className="bg-red-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
+              <FaRegTrashAlt />
+            </Button>
+          </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-4 gap-3 ">
+      <div className="grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-3">
         {employeeProfile.map((employe, idx) => (
           <div key={idx} className="my-auto grid items-center text-center">
             <Image

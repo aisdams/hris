@@ -203,81 +203,85 @@ export default function Index() {
           </Button>
         </div>
       </div>
-      <div className="grid grid-cols-5 my-10 mx-auto justify-center items-center gap-5">
-        <div className="grid">
-          <h1 className="text-sm mb-2">Type</h1>
-          <RadioGroup defaultValue="monthly" className="flex">
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="monthly" id="monthly" />
-              <Label htmlFor="monthly" className="font-semibold">
-                Monthly
-              </Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="yearly" id="yearly" />
-              <Label htmlFor="yearly">Yearly</Label>
-            </div>
-          </RadioGroup>
-        </div>
 
-        <div className="grid">
-          <h1 className="text-sm mb-2">Month</h1>
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button
-                className={cn(
-                  'w-[160px] border border-gray-500 bg-transparent hover:bg-transparent justify-start text-left font-normal',
-                  !date && 'text-muted-foreground',
-                )}
-              >
-                <CalendarIcon className="mr-2 h-4 w-4" />
-                {date ? format(date, 'PPP') : <span>December 2023</span>}
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-0">
-              <Calendar mode="single" selected={date} onSelect={setDate} initialFocus />
-            </PopoverContent>
-          </Popover>
-        </div>
+      <div className="flex gap-3 my-10 w-full">
+        <div className="grid" />
+        <div className="md:flex grid gap-3 items-center md:justify-end w-full">
+          <div className="grid">
+            <h1 className="text-sm mb-2">Type</h1>
+            <RadioGroup defaultValue="monthly" className="flex">
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="monthly" id="monthly" />
+                <Label htmlFor="monthly" className="font-semibold">
+                  Monthly
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="yearly" id="yearly" />
+                <Label htmlFor="yearly">Yearly</Label>
+              </div>
+            </RadioGroup>
+          </div>
 
-        <div className="grid">
-          <h1 className="text-sm mb-2">Branch</h1>
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex px-3 w-[160px] border border-gray-500 bg-transparent hover:bg-transparent text-left font-normal justify-between rounded-md h-10 items-center pt-1">
-              All <FaChevronDown />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>China</DropdownMenuItem>
-              <DropdownMenuItem>India</DropdownMenuItem>
-              <DropdownMenuItem>Canada</DropdownMenuItem>
-              <DropdownMenuItem>Greece</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
+          <div className="grid">
+            <h1 className="text-sm mb-2">Month</h1>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  className={cn(
+                    'w-[160px] border border-gray-500 bg-transparent hover:bg-transparent justify-start text-left font-normal',
+                    !date && 'text-muted-foreground',
+                  )}
+                >
+                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  {date ? format(date, 'PPP') : <span>December 2023</span>}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0">
+                <Calendar mode="single" selected={date} onSelect={setDate} initialFocus />
+              </PopoverContent>
+            </Popover>
+          </div>
 
-        <div className="grid">
-          <h1 className="text-sm mb-2">Department</h1>
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex px-3 w-[160px] border border-gray-500 bg-transparent hover:bg-transparent text-left text-sm font-normal justify-between rounded-md h-10 items-center pt-1">
-              Select Department <FaChevronDown />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel>Industrials</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>China</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
+          <div className="grid">
+            <h1 className="text-sm mb-2">Branch</h1>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex px-3 w-[160px] border border-gray-500 bg-transparent hover:bg-transparent text-left font-normal justify-between rounded-md h-10 items-center pt-1">
+                All <FaChevronDown />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>China</DropdownMenuItem>
+                <DropdownMenuItem>India</DropdownMenuItem>
+                <DropdownMenuItem>Canada</DropdownMenuItem>
+                <DropdownMenuItem>Greece</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
 
-        <div className="flex gap-4 pt-7">
-          <Button className="bg-purple-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
-            <FaSearch />
-          </Button>
-          <Button className="bg-red-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
-            <FaRegTrashAlt />
-          </Button>
+          <div className="grid">
+            <h1 className="text-sm mb-2">Department</h1>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex px-3 w-[160px] border border-gray-500 bg-transparent hover:bg-transparent text-left text-sm font-normal justify-between rounded-md h-10 items-center pt-1">
+                Select Department <FaChevronDown />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel>Industrials</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>China</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+
+          <div className="flex gap-4 pt-7">
+            <Button className="bg-purple-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
+              <FaSearch />
+            </Button>
+            <Button className="bg-red-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
+              <FaRegTrashAlt />
+            </Button>
+          </div>
         </div>
       </div>
 

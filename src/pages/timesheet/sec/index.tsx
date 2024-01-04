@@ -204,84 +204,87 @@ export default function Timesheet() {
           </Button>
         </div>
       </div>
-      <div className="grid grid-cols-5 gap-3 !justify-end items-center my-10">
-        <div className="grid">
-          <h1 className="text-sm mb-2">Start Date</h1>
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button
-                className={cn(
-                  'border border-gray-500 bg-transparent hover:bg-transparent justify-start text-left font-normal',
-                  !date && 'text-muted-foreground',
-                )}
-              >
-                <CalendarIcon className="mr-2 h-4 w-4" />
-                {date ? format(date, 'PPP') : <span>2023 -12-20</span>}
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-0">
-              <Calendar mode="single" selected={date} onSelect={setDate} initialFocus />
-            </PopoverContent>
-          </Popover>
-        </div>
+      <div className="flex gap-3 my-10 w-full">
+        <div className="grid" />
+        <div className="md:flex grid gap-3 items-center md:justify-end w-full">
+          <div className="grid">
+            <h1 className="text-sm mb-2">Start Date</h1>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  className={cn(
+                    'border border-gray-500 bg-transparent hover:bg-transparent justify-start text-left font-normal',
+                    !date && 'text-muted-foreground',
+                  )}
+                >
+                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  {date ? format(date, 'PPP') : <span>2023 -12-20</span>}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0">
+                <Calendar mode="single" selected={date} onSelect={setDate} initialFocus />
+              </PopoverContent>
+            </Popover>
+          </div>
 
-        <div className="grid">
-          <h1 className="text-sm mb-2">End Date</h1>
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button
-                className={cn(
-                  'border border-gray-500 bg-transparent hover:bg-transparent justify-start text-left font-normal',
-                  !date && 'text-muted-foreground',
-                )}
-              >
-                <CalendarIcon className="mr-2 h-4 w-4" />
-                {date ? format(date, 'PPP') : <span>2023 -12-20</span>}
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-0">
-              <Calendar mode="single" selected={date} onSelect={setDate} initialFocus />
-            </PopoverContent>
-          </Popover>
-        </div>
+          <div className="grid">
+            <h1 className="text-sm mb-2">End Date</h1>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  className={cn(
+                    'border border-gray-500 bg-transparent hover:bg-transparent justify-start text-left font-normal',
+                    !date && 'text-muted-foreground',
+                  )}
+                >
+                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  {date ? format(date, 'PPP') : <span>2023 -12-20</span>}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0">
+                <Calendar mode="single" selected={date} onSelect={setDate} initialFocus />
+              </PopoverContent>
+            </Popover>
+          </div>
 
-        <div className="grid">
-          <h1 className="text-sm mb-2">Employee</h1>
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex px-3 border border-gray-500 bg-transparent hover:bg-transparent text-left font-normal justify-between rounded-md h-10 items-center pt-1">
-              All <FaChevronDown />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>James</DropdownMenuItem>
-              <DropdownMenuItem>Lorem</DropdownMenuItem>
-              <DropdownMenuItem>Lorem</DropdownMenuItem>
-              <DropdownMenuItem>Lorem</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
+          <div className="grid">
+            <h1 className="text-sm mb-2">Employee</h1>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex px-3 md:w-[180px] w-full border border-gray-500 bg-transparent hover:bg-transparent text-left font-normal justify-between rounded-md h-10 items-center pt-1">
+                All <FaChevronDown />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>James</DropdownMenuItem>
+                <DropdownMenuItem>Lorem</DropdownMenuItem>
+                <DropdownMenuItem>Lorem</DropdownMenuItem>
+                <DropdownMenuItem>Lorem</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
 
-        <div className="grid">
-          <h1 className="text-sm mb-2">Department</h1>
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex px-3 border border-gray-500 bg-transparent hover:bg-transparent text-left text-sm font-normal justify-between rounded-md h-10 items-center pt-1">
-              Select Department <FaChevronDown />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel>Industrials</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>China</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
+          <div className="grid">
+            <h1 className="text-sm mb-2">Department</h1>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex px-3 md:w-[180px] w-full border border-gray-500 bg-transparent hover:bg-transparent text-left text-sm font-normal justify-between rounded-md h-10 items-center pt-1">
+                Select Department <FaChevronDown />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel>Industrials</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>China</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
 
-        <div className="flex items-center">
-          <Button className="bg-purple-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
-            <FaSearch />
-          </Button>
-          <Button className="bg-red-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
-            <FaRegTrashAlt />
-          </Button>
+          <div className="flex items-center gap-3">
+            <Button className="bg-purple-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
+              <FaSearch />
+            </Button>
+            <Button className="bg-red-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
+              <FaRegTrashAlt />
+            </Button>
+          </div>
         </div>
       </div>
 

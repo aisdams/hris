@@ -203,7 +203,10 @@ export default function Index() {
           </Button>
         </div>
       </div>
-      <div className="grid grid-cols-5 my-10 mx-auto justify-center items-center gap-5">
+
+      <div className="flex gap-3 my-10 w-full">
+        <div className="grid" />
+        <div className="md:flex grid gap-3 items-center md:justify-end w-full">
         <div className="grid">
           <h1 className="text-sm mb-2">Type</h1>
           <RadioGroup defaultValue="monthly" className="flex">
@@ -226,7 +229,7 @@ export default function Index() {
             <PopoverTrigger asChild>
               <Button
                 className={cn(
-                  'w-[160px] border border-gray-500 bg-transparent hover:bg-transparent justify-start text-left font-normal',
+                  'md:w-[160px] w-full border border-gray-500 bg-transparent hover:bg-transparent justify-start text-left font-normal',
                   !date && 'text-muted-foreground',
                 )}
               >
@@ -243,7 +246,7 @@ export default function Index() {
         <div className="grid">
           <h1 className="text-sm mb-2">Branch</h1>
           <DropdownMenu>
-            <DropdownMenuTrigger className="flex px-3 w-[160px] border border-gray-500 bg-transparent hover:bg-transparent text-left font-normal justify-between rounded-md h-10 items-center pt-1">
+            <DropdownMenuTrigger className="flex px-3 md:w-[160px] w-full border border-gray-500 bg-transparent hover:bg-transparent text-left font-normal justify-between rounded-md h-10 items-center pt-1">
               All <FaChevronDown />
             </DropdownMenuTrigger>
             <DropdownMenuContent>
@@ -260,7 +263,7 @@ export default function Index() {
         <div className="grid">
           <h1 className="text-sm mb-2">Department</h1>
           <DropdownMenu>
-            <DropdownMenuTrigger className="flex px-3 w-[160px] border border-gray-500 bg-transparent hover:bg-transparent text-left text-sm font-normal justify-between rounded-md h-10 items-center pt-1">
+            <DropdownMenuTrigger className="flex px-3 md:w-[160px] w-full border border-gray-500 bg-transparent hover:bg-transparent text-left text-sm font-normal justify-between rounded-md h-10 items-center pt-1">
               Select Department <FaChevronDown />
             </DropdownMenuTrigger>
             <DropdownMenuContent>
@@ -279,6 +282,7 @@ export default function Index() {
             <FaRegTrashAlt />
           </Button>
         </div>
+      </div>
       </div>
 
       <div className="w-full mt-10">

@@ -175,7 +175,7 @@ export const columns: ColumnDef<Payment>[] = [
   },
 ];
 
-export default function SetSalary() {
+export default function Index() {
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState('');
   const [date, setDate] = React.useState<Date>();
@@ -216,26 +216,24 @@ export default function SetSalary() {
       </div>
 
       <div className="mt-14">
-        <div className="flex justify-between mt-10">
-          <div className="flex">
-            <div className="flex items-center gap-3">
-              <div className="border border-gray-400 px-5 py-1 rounded-md">
-                <DropdownMenu>
-                  <DropdownMenuTrigger className="flex gap-3 items-center">
-                    10 <FaAngleDown />
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent>
-                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem>Profile</DropdownMenuItem>
-                    <DropdownMenuItem>Billing</DropdownMenuItem>
-                    <DropdownMenuItem>Team</DropdownMenuItem>
-                    <DropdownMenuItem>Subscription</DropdownMenuItem>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </div>
-              <h1>entries per page</h1>
+        <div className="grid sm:flex justify-between mt-10">
+          <div className="flex items-center justify-normal sm:justify-between gap-3">
+            <div className="border border-gray-400 px-5 py-1 rounded-md">
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex gap-3 items-center">
+                  10 <FaAngleDown />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent>
+                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuItem>Profile</DropdownMenuItem>
+                  <DropdownMenuItem>Billing</DropdownMenuItem>
+                  <DropdownMenuItem>Team</DropdownMenuItem>
+                  <DropdownMenuItem>Subscription</DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
+            <h1>entries per page</h1>
           </div>
 
           <Popover open={open} onOpenChange={setOpen}>
@@ -244,7 +242,7 @@ export default function SetSalary() {
                 variant="outline"
                 role="combobox"
                 aria-expanded={open}
-                className="w-[200px] border border-gray-400 justify-between"
+                className="sm:w-[200px] mt-3 sm:mt-0 w-full border border-gray-400 justify-between"
               >
                 {value ? frameworks.find((framework) => framework.value === value)?.label : 'Search...'}
                 <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />

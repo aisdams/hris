@@ -190,7 +190,7 @@ export default function Payslip() {
         </div>
       </div>
 
-      <div className="flex items-center gap-3 justify-end">
+      <div className="md:flex items-center gap-3 md:justify-end grid">
         <div className="grid"></div>
         <div className="flex gap-3">
           <div className="grid">
@@ -245,13 +245,13 @@ export default function Payslip() {
         </div>
       </div>
 
-      <div className="flex justify-between mt-10">
+      <div className="md:flex md:justify-between justify-normal mt-10">
         <div className="flex gap-2 items-center">
           <hr className="bg-purple-500 w-2 h-7" />
           <h1>Find Employee Payslip</h1>
         </div>
 
-        <div className="flex gap-3">
+        <div className="md:flex grid grid-cols-2 gap-3 md:mt-0 mt-3">
           <Button className="bg-purple-500">Export</Button>
           <Button className="bg-purple-500">Bulk Payment</Button>
         </div>
@@ -345,5 +345,5 @@ export default function Payslip() {
         </div>
       </div>
     </div>
-  );
+  );  
 }

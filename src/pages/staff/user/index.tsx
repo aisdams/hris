@@ -59,7 +59,7 @@ export default function User() {
         </div>
       </div>
 
-      <div className="grid grid-cols-4 mt-20">
+      <div className="grid md:grid-cols-4 grid-cols-2 md:gap-0 gap-8 mt-20">
         {users.map((user, idx) => (
           <div key={idx} className="">
             <div className="flex justify-between">
@@ -78,7 +78,7 @@ export default function User() {
         ))}
       </div>
 
-      <div className="mt-14 grid grid-cols-4 ">
+      <div className="mt-14 grid md:grid-cols-4 grid-cols-2 md:gap-0 gap-8">
         <div>
           <div className="flex justify-between">
             <div className="bg-purple-500 px-3 text-white h-max">Accountant</div>

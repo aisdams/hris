@@ -39,14 +39,18 @@ export default function MonthlyAttendance() {
       </div>
 
       <div className="my-10">
-        <div className="flex items-center gap-3 justify-end">
-          <div className="grid"></div>
-          <div className="flex gap-3">
+        <div className="grid items-center gap-3 md:justify-end">
+          <div className="md:grid 
+          w-full hidden"></div>
+          <div
+            className="md:flex grid gap-3
+          "
+          >
             <div className="grid">
               <div className="grid">
                 <h1>Select Month</h1>
                 <DropdownMenu>
-                  <DropdownMenuTrigger className="flex px-3 w-[160px] border border-gray-500 bg-transparent hover:bg-transparent text-left text-sm font-normal justify-between rounded-md h-10 items-center pt-1">
+                  <DropdownMenuTrigger className="flex px-3 md:w-[160px] w-full border border-gray-500 bg-transparent hover:bg-transparent text-left text-sm font-normal justify-between rounded-md h-10 items-center pt-1">
                     Jan <FaChevronDown />
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
@@ -67,7 +71,7 @@ export default function MonthlyAttendance() {
             <div className="grid">
               <h1 className="text-sm mb-2">Branch</h1>
               <DropdownMenu>
-                <DropdownMenuTrigger className="flex px-3 w-[160px] border border-gray-500 bg-transparent hover:bg-transparent text-left font-normal justify-between rounded-md h-10 items-center pt-1">
+                <DropdownMenuTrigger className="flex px-3 md:w-[160px] w-full border border-gray-500 bg-transparent hover:bg-transparent text-left font-normal justify-between rounded-md h-10 items-center pt-1">
                   All <FaChevronDown />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
@@ -84,7 +88,7 @@ export default function MonthlyAttendance() {
             <div className="grid">
               <h1 className="text-sm mb-2">Department</h1>
               <DropdownMenu>
-                <DropdownMenuTrigger className="flex px-3 w-[160px] border border-gray-500 bg-transparent hover:bg-transparent text-left text-sm font-normal justify-between rounded-md h-10 items-center pt-1">
+                <DropdownMenuTrigger className="flex px-3 md:w-[160px] w-full border border-gray-500 bg-transparent hover:bg-transparent text-left text-sm font-normal justify-between rounded-md h-10 items-center pt-1">
                   Select Department <FaChevronDown />
                 </DropdownMenuTrigger>
                 <DropdownMenuContent>
@@ -97,7 +101,7 @@ export default function MonthlyAttendance() {
             <div className="grid">
               <h1 className="text-sm mb-2">Employee</h1>
               <DropdownMenu>
-                <DropdownMenuTrigger className="flex px-3 w-[160px] border border-gray-500 bg-transparent hover:bg-transparent text-left text-sm font-normal justify-between rounded-md h-10 items-center pt-1">
+                <DropdownMenuTrigger className="flex px-3 md:w-[160px] w-full border border-gray-500 bg-transparent hover:bg-transparent text-left text-sm font-normal justify-between rounded-md h-10 items-center pt-1">
                   Employee
                   <FaChevronDown />
                 </DropdownMenuTrigger>
@@ -120,7 +124,7 @@ export default function MonthlyAttendance() {
       </div>
 
       <div className="w-full mt-14">
-        <div className="grid grid-cols-2 gap-3 items-center">
+        <div className="grid grid-cols-2  gap-3 items-center">
           <div className="flex items-center gap-3">
             <div className="bg-purple-500 text-white px-2 w-10 h-10 rounded-md grid items-center">
               <TbClipboardCopy className="text-2xl" />

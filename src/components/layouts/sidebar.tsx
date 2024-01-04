@@ -24,7 +24,7 @@ export default function Sidebar() {
   useEffect(() => {
     const handleResize = () => {
       const screenWidth = window.innerWidth;
-      if (screenWidth < 1200) {
+      if (screenWidth < 1024) {
         setShowSidebar(false);
       } else {
         setShowSidebar(true);

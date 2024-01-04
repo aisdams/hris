@@ -229,7 +229,7 @@ export default function Employee() {
         </div>
       </div>
 
-      <div className="flex justify-between mt-10">
+      <div className="sm:flex justify-between mt-10">
         <div className="flex">
           <div className="flex items-center gap-3">
             <div className="border border-gray-400 px-5 py-1 rounded-md">
@@ -257,7 +257,7 @@ export default function Employee() {
               variant="outline"
               role="combobox"
               aria-expanded={open}
-              className="w-[200px] border border-gray-400 justify-between"
+              className="sm:w-[200px] w-[86px] border md:mt-0 mt-2 border-gray-400 justify-between"
             >
               {value ? frameworks.find((framework) => framework.value === value)?.label : 'Search...'}
               <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />

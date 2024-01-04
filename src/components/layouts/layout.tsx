@@ -22,7 +22,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   useEffect(() => {
     const handleResize = () => {
       const screenWidth = window.innerWidth;
-      if (screenWidth < 1200) {
+      if (screenWidth < 1024) {
         setShowSidebar(false);
       } else {
         setShowSidebar(true);
@@ -56,9 +56,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             isSidebarVisible ? 'ml-1/5' : ''
           } ${showSidebar ? '' : styles.childrenAnimHidden} p-4`}
         >
-          <div className={`!mt-10 mr-9 ml-5 ${styles.childrenAnim}`}>
+          <div className={`!mt-10 sm:mr-9 mr-0 ml-5 ${styles.childrenAnim}`}>
             {children}
-            <Footer />
+            {/* <div className="absolute right-0 bottom-0 !justify-end w-4/5">
+              <Footer />
+            </div> */}
           </div>
         </div>
       </div>

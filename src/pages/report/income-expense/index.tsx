@@ -91,9 +91,9 @@ export default function IncomeExpense() {
       </div>
 
       <div className="my-10">
-        <div className="grid grid-cols-2">
-          <div className="grid" />
-          <div className="flex justify-end items-center gap-5">
+        <div className="grid md:grid">
+          <div className="md:flex hidden" />
+          <div className="md:flex md:justify-end items-center gap-5 grid">
             <div className="grid">
               <h1>Start Month</h1>
 
@@ -101,7 +101,7 @@ export default function IncomeExpense() {
                 <PopoverTrigger asChild>
                   <Button
                     className={cn(
-                      'w-[280px] border border-gray-500 bg-transparent hover:bg-transparent justify-start text-left font-normal',
+                      'md:w-[280px] border border-gray-500 bg-transparent hover:bg-transparent justify-start text-left font-normal',
                       !date && 'text-muted-foreground',
                     )}
                   >
@@ -120,7 +120,7 @@ export default function IncomeExpense() {
                 <PopoverTrigger asChild>
                   <Button
                     className={cn(
-                      'w-[280px] border border-gray-500 bg-transparent hover:bg-transparent justify-start text-left font-normal',
+                      'md:w-[280px] border border-gray-500 bg-transparent hover:bg-transparent justify-start text-left font-normal',
                       !date && 'text-muted-foreground',
                     )}
                   >
@@ -145,9 +145,9 @@ export default function IncomeExpense() {
         </div>
       </div>
 
-      <div className="flex my-20 mx-auto justify-between">
+      <div className="lg:flex grid-cols-2 gap-3 lg:gap-0 grid my-20 mx-auto justify-between">
         {reports.map((report, idx) => (
-          <div className="flex items-center gap-5 bg-gray-300/5 px-3 py-1 rounded-md" key={idx}>
+          <div className="flex md: items-center gap-5 bg-gray-300/5 px-3 py-1 rounded-md" key={idx}>
             <div className="bg-purple-500 px-3 py-2 rounded-xl text-white">
               <span>{React.createElement(report.icon, { size: 28 })}</span>
             </div>

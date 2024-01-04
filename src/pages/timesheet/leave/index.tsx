@@ -229,7 +229,7 @@ export default function Leave() {
           </div>
         </div>
 
-        <div className="grid grid-cols-3 gap-3 items-center mt-8">
+        <div className="grid md:grid-cols-3 grid-cols-2 gap-3 items-center mt-8">
           <div className="flex items-center gap-3">
             <div className="bg-purple-500 text-white px-2 w-10 h-10 rounded-md grid items-center">
               <TbCircleCheck className="text-2xl" />

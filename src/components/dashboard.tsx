@@ -121,7 +121,7 @@ export default function Dashboard() {
 
       <div className="card w-full mt-10">
         <h1 className="font-semibold mb-8 text-xl">Sales Report</h1>
-        <div className="flex items-center mx-auto justify-center text-center gap-5">
+        <div className="grid items-center mx-auto justify-center text-center gap-5 sm:flex">
           <div className="flex items-center gap-3">
             <h1 className="flex items-center gap-2">
               <div className="w-2 h-2 bg-purple-700 rounded-full" />
@@ -150,7 +150,7 @@ export default function Dashboard() {
 
       <div className="card w-full mt-10">
         <h1 className="font-semibold mb-8 text-xl">Sales Growth</h1>
-        <div className="flex items-center mx-auto justify-center text-center gap-5">
+        <div className="grid items-center mx-auto justify-center text-center gap-5 sm:flex">
           <div className="flex items-center gap-3">
             <h1 className="flex items-center gap-2">
               <div className="w-2 h-2 bg-purple-700 rounded-full" />
