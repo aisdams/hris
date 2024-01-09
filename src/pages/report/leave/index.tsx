@@ -33,6 +33,9 @@ import { IoIosRemoveCircleOutline } from 'react-icons/io';
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from 'lucide-react';
 import { MdArrowForwardIos, MdDownload, MdOutlineDateRange } from 'react-icons/md';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
+import { useTheme } from 'next-themes';
+import { useConfig } from '@/hooks/use-config';
+import { themes } from '@/registry/themes';
 
 const data: Payment[] = [
   {
@@ -180,6 +183,11 @@ export default function Leave() {
     },
   });
 
+  const { theme: mode } = useTheme();
+  const [config] = useConfig();
+
+  const theme = themes.find((theme) => theme.name === config.theme);
+
   return (
     <div className="w-full">
       <div className="flex w-full justify-between pt-10 items-center">
@@ -192,10 +200,26 @@ export default function Leave() {
           </div>
         </div>
         <div className="flex gap-3">
-          <Button className="bg-purple-500 text-white px-2 w-9 h-9 rounded-md">
+          <Button
+            className="text-white px-2 w-9 h-9 rounded-md"
+            style={
+              {
+                backgroundColor: 'var(--theme-primary)',
+                '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+              } as React.CSSProperties
+            }
+          >
             <MdDownload />
           </Button>
-          <Button className="bg-purple-500 text-white px-2 w-9 h-9 rounded-md">
+          <Button
+            className="text-white px-2 w-9 h-9 rounded-md"
+            style={
+              {
+                backgroundColor: 'var(--theme-primary)',
+                '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+              } as React.CSSProperties
+            }
+          >
             <HiOutlineDocumentPlus />
           </Button>
         </div>
@@ -204,7 +228,15 @@ export default function Leave() {
       <div className="w-full my-10">
         <div className="grid grid-cols-2 gap-3 items-center">
           <div className="flex items-center gap-3">
-            <div className="bg-purple-500 text-white px-2 w-10 h-10 rounded-md grid items-center">
+            <div
+              className="text-white px-2 w-10 h-10 rounded-md grid items-center"
+              style={
+                {
+                  backgroundColor: 'var(--theme-primary)',
+                  '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+                } as React.CSSProperties
+              }
+            >
               <TbClipboardCopy className="text-2xl" />
             </div>
             <div className="grid">
@@ -226,7 +258,15 @@ export default function Leave() {
 
         <div className="grid grid-cols-3 gap-3 items-center mt-8">
           <div className="flex items-center gap-3">
-            <div className="bg-purple-500 text-white px-2 w-10 h-10 rounded-md grid items-center">
+            <div
+              className="text-white px-2 w-10 h-10 rounded-md grid items-center"
+              style={
+                {
+                  backgroundColor: 'var(--theme-primary)',
+                  '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+                } as React.CSSProperties
+              }
+            >
               <TbCircleCheck className="text-2xl" />
             </div>
             <div className="grid">
@@ -246,7 +286,15 @@ export default function Leave() {
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="bg-purple-500 text-white px-2 w-10 h-10 rounded-md grid items-center">
+            <div
+              className="text-white px-2 w-10 h-10 rounded-md grid items-center"
+              style={
+                {
+                  backgroundColor: 'var(--theme-primary)',
+                  '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+                } as React.CSSProperties
+              }
+            >
               <IoIosRemoveCircleOutline className="text-2xl" />
             </div>
             <div className="grid">

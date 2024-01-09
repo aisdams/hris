@@ -1,14 +1,15 @@
-import { useConfig } from "@/hooks/use-config";
-import { CssVars, themes } from "@/registry/themes";
-import React from "react";
-import { Label } from "../ui/label";
-import { Button } from "../ui/button";
-import { CheckIcon } from "lucide-react";
-import { Skeleton } from "../ui/skeleton";
-import { useTheme } from "next-themes";
-import { cn } from "@/lib/utils";
+import { useConfig } from '@/hooks/use-config';
+import { CssVars, themes } from '@/registry/themes';
+import React from 'react';
+import { Label } from '../ui/label';
+import { Button } from '../ui/button';
+import { CheckIcon } from 'lucide-react';
+import { Skeleton } from '../ui/skeleton';
+import { useTheme } from 'next-themes';
+import { cn } from '@/lib/utils';
 
 const ColorSection: React.FC = () => {
+  const [selectedColor, setSelectedColor] = React.useState('');
   const [config, setConfig] = useConfig();
   const [mounted, setMounted] = React.useState(false);
   const { resolvedTheme: mode } = useTheme();
@@ -26,7 +27,7 @@ const ColorSection: React.FC = () => {
 
           return mounted ? (
             <Button
-              variant={"outline"}
+              variant={'outline'}
               size="sm"
               key={theme.name}
               onClick={() => {
@@ -36,21 +37,16 @@ const ColorSection: React.FC = () => {
                   cssVars: theme.cssVars as CssVars,
                 });
               }}
-              className={cn(
-                "justify-start",
-                isActive && "border-2 border-primary"
-              )}
+              className={cn('justify-start', isActive && 'border-2 border-primary')}
               style={
                 {
-                  "--theme-primary": `hsl(${
-                    theme?.activeColor[mode === "dark" ? "dark" : "light"]
-                  })`,
+                  '--theme-primary': `hsl(${theme?.activeColor[mode === 'dark' ? 'dark' : 'light']})`,
                 } as React.CSSProperties
               }
             >
               <span
                 className={cn(
-                  "mr-1 flex h-5 w-5 shrink-0 -translate-x-1 items-center justify-center rounded-full bg-[--theme-primary]"
+                  'mr-1 flex h-5 w-5 shrink-0 -translate-x-1 items-center justify-center rounded-full bg-[--theme-primary]',
                 )}
               >
                 {isActive && <CheckIcon className="w-4 h-4 text-white" />}

@@ -23,8 +23,11 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
+import { useTheme } from 'next-themes';
+import { themes } from '@/registry/themes';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
+import { useConfig } from '@/hooks/use-config';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Calendar } from '@/components/ui/calendar';
@@ -158,11 +161,14 @@ export const columns: ColumnDef<Payment>[] = [
 ];
 
 export default function Index() {
+  const [config] = useConfig();
+  const { theme: mode } = useTheme();
   const [date, setDate] = React.useState<Date>();
+  const [rowSelection, setRowSelection] = React.useState({});
   const [sorting, setSorting] = React.useState<SortingState>([]);
+  const theme = themes.find((theme) => theme.name === config.theme);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = React.useState({});
 
   const table = useReactTable({
     data,
@@ -195,10 +201,26 @@ export default function Index() {
           </div>
         </div>
         <div className="flex gap-3">
-          <Button className="bg-purple-500 text-white px-2 w-9 h-9 rounded-md">
+          <Button
+            className="text-white px-2 w-9 h-9 rounded-md"
+            style={
+              {
+                backgroundColor: 'var(--theme-primary)',
+                '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+              } as React.CSSProperties
+            }
+          >
             <MdDownload />
           </Button>
-          <Button className="bg-purple-500 text-white px-2 w-9 h-9 rounded-md">
+          <Button
+            className="text-white px-2 w-9 h-9 rounded-md"
+            style={
+              {
+                backgroundColor: 'var(--theme-primary)',
+                '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+              } as React.CSSProperties
+            }
+          >
             <HiOutlineDocumentPlus />
           </Button>
         </div>

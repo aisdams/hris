@@ -21,15 +21,18 @@ import {
   DropdownMenuTrigger,
   DropdownMenuCheckboxItem,
 } from '@/components/ui/dropdown-menu';
+import { useTheme } from 'next-themes';
+import { themes } from '@/registry/themes';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useConfig } from '@/hooks/use-config';
 import { Button } from '@/components/ui/button';
+import { FaChevronDown } from 'react-icons/fa';
 import { Checkbox } from '@/components/ui/checkbox';
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from 'lucide-react';
 import { MdArrowForwardIos, MdDownload, MdOutlineDateRange } from 'react-icons/md';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import { FaChevronDown } from 'react-icons/fa';
 
 const data: Payment[] = [
   {
@@ -153,11 +156,14 @@ export const columns: ColumnDef<Payment>[] = [
 ];
 
 export default function Payslip() {
+  const [config] = useConfig();
+  const { theme: mode } = useTheme();
   const [date, setDate] = React.useState<Date>();
+  const [rowSelection, setRowSelection] = React.useState({});
   const [sorting, setSorting] = React.useState<SortingState>([]);
+  const theme = themes.find((theme) => theme.name === config.theme);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = React.useState({});
 
   const table = useReactTable({
     data,
@@ -231,7 +237,15 @@ export default function Payslip() {
             </div>
           </div>
         </div>
-        <div className=" bg-purple-500 text-white rounded-sm px-3 h-8 pt-1 mt-4">
+        <div
+          className="text-white rounded-sm px-3 h-8 pt-1 mt-4"
+          style={
+            {
+              backgroundColor: 'var(--theme-primary)',
+              '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+            } as React.CSSProperties
+          }
+        >
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger>
@@ -252,8 +266,28 @@ export default function Payslip() {
         </div>
 
         <div className="md:flex grid grid-cols-2 gap-3 md:mt-0 mt-3">
-          <Button className="bg-purple-500">Export</Button>
-          <Button className="bg-purple-500">Bulk Payment</Button>
+          <Button
+            className="text-white"
+            style={
+              {
+                backgroundColor: 'var(--theme-primary)',
+                '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+              } as React.CSSProperties
+            }
+          >
+            Export
+          </Button>
+          <Button
+            className="text-white"
+            style={
+              {
+                backgroundColor: 'var(--theme-primary)',
+                '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+              } as React.CSSProperties
+            }
+          >
+            Bulk Payment
+          </Button>
         </div>
       </div>
 
@@ -345,5 +379,5 @@ export default function Payslip() {
         </div>
       </div>
     </div>
-  );  
+  );
 }

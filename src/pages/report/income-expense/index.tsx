@@ -3,17 +3,20 @@ import React from 'react';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { format } from 'date-fns';
+import dynamic from 'next/dynamic';
+import { useTheme } from 'next-themes';
 import { CiWallet } from 'react-icons/ci';
-import { Button } from '@/components/ui/button';
+import { themes } from '@/registry/themes';
+import { useConfig } from '@/hooks/use-config';
 import { Calendar } from '@/components/ui/calendar';
 import { IoDocumentOutline } from 'react-icons/io5';
 import ApexCharts, { ApexOptions } from 'apexcharts';
 import { RiMoneyDollarBoxLine } from 'react-icons/ri';
+import { Button } from '@/registry/new-york/ui/button';
 import { Calendar as CalendarIcon } from 'lucide-react';
 import { FaSearch, FaRegTrashAlt } from 'react-icons/fa';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { MdArrowForwardIos, MdDownload, MdOutlineDateRange } from 'react-icons/md';
-import dynamic from 'next/dynamic';
 
 const ReactApexChart = dynamic(() => import('react-apexcharts'), {
   ssr: false,
@@ -74,6 +77,11 @@ export default function IncomeExpense() {
     },
   };
 
+  const { theme: mode } = useTheme();
+  const [config] = useConfig();
+
+  const theme = themes.find((theme) => theme.name === config.theme);
+
   return (
     <div className="w-full">
       <div className="flex w-full justify-between pt-10 items-center">
@@ -85,7 +93,15 @@ export default function IncomeExpense() {
             <h1>Manage Income Vs Expense Report</h1>
           </div>
         </div>
-        <Button className="bg-purple-500 text-white px-2 w-9 h-9 rounded-md">
+        <Button
+          className="px-2 w-9 h-9 rounded-md text-white"
+          style={
+            {
+              backgroundColor: 'var(--theme-primary)',
+              '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+            } as React.CSSProperties
+          }
+        >
           <MdDownload />
         </Button>
       </div>
@@ -134,7 +150,15 @@ export default function IncomeExpense() {
               </Popover>
             </div>
             <div className="flex gap-2 items-center mt-5">
-              <Button className="bg-purple-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
+              <Button
+                className="text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center"
+                style={
+                  {
+                    backgroundColor: 'var(--theme-primary)',
+                    '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+                  } as React.CSSProperties
+                }
+              >
                 <FaSearch />
               </Button>
               <Button className="bg-red-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
@@ -148,7 +172,15 @@ export default function IncomeExpense() {
       <div className="lg:flex grid-cols-2 gap-3 lg:gap-0 grid my-20 mx-auto justify-between">
         {reports.map((report, idx) => (
           <div className="flex md: items-center gap-5 bg-gray-300/5 px-3 py-1 rounded-md" key={idx}>
-            <div className="bg-purple-500 px-3 py-2 rounded-xl text-white">
+            <div
+              className="px-3 py-2 rounded-xl text-white"
+              style={
+                {
+                  backgroundColor: 'var(--theme-primary)',
+                  '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+                } as React.CSSProperties
+              }
+            >
               <span>{React.createElement(report.icon, { size: 28 })}</span>
             </div>
             <div className="">

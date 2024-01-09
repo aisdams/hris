@@ -2,9 +2,12 @@
 import React from 'react';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
+import { useTheme } from 'next-themes';
 import { SlBag } from 'react-icons/sl';
 import { FiUsers } from 'react-icons/fi';
 import { CiDollar } from 'react-icons/ci';
+import { themes } from '@/registry/themes';
+import { useConfig } from '@/hooks/use-config';
 import ApexCharts, { ApexOptions } from 'apexcharts';
 import { MdOutlineShoppingCart } from 'react-icons/md';
 import { FaArrowDown, FaArrowUp } from 'react-icons/fa';
@@ -14,6 +17,8 @@ const ReactApexChart = dynamic(() => import('react-apexcharts'), {
 });
 
 export default function Dashboard() {
+  const [selectedColor, setSelectedColor] = React.useState('');
+
   const dataHr = [
     {
       total: '100+',
@@ -63,7 +68,6 @@ export default function Dashboard() {
       zoom: {
         enabled: true,
       },
-      foreColor: '#5a75d7',
     },
     stroke: {
       curve: 'smooth',
@@ -88,19 +92,23 @@ export default function Dashboard() {
       zoom: {
         enabled: true,
       },
-      foreColor: '#5a75d7',
     },
     stroke: {
       curve: 'smooth',
     },
   };
 
+  const { theme: mode } = useTheme();
+  const [config] = useConfig();
+
+  const theme = themes.find((theme) => theme.name === config.theme);
+
   return (
     <div className="w-full lg:mt-20 mt-3">
       <h1 className="font-semibold mb-8 text-xl">Dashboard</h1>
       <div className="grid grid-cols-1 gap-8 w-full md:!grid md:grid-cols-2 ">
         {dataHr.map((datahr, idx) => (
-          <div key={idx} className="w-full">
+          <div key={idx} className="w-full" style={{ backgroundColor: selectedColor }}>
             <div className="flex justify-between">
               <div className="grid">
                 <h1 className="font-bold text-xl">{datahr.total}</h1>
@@ -110,8 +118,15 @@ export default function Dashboard() {
                   <p>{datahr.rate} Since last month</p>
                 </div>
               </div>
-
-              <div className="bg-blue-500/20 rounded-lg w-16 h-max p-5 grid justify-center items-center text-orange-500">
+              <div
+                className="bg-blue-500/20 rounded-lg w-16 h-max p-5 grid justify-center items-center"
+                style={
+                  {
+                    color: 'var(--theme-primary)',
+                    '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+                  } as React.CSSProperties
+                }
+              >
                 <span>{React.createElement(datahr.iconImp, { size: 26 })}</span>
               </div>
             </div>
@@ -145,7 +160,18 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
-        <ReactApexChart options={options} series={series} type="line" height={350} />
+        <ReactApexChart
+          options={options}
+          series={series}
+          type="line"
+          height={350}
+          style={
+            {
+              stroke: 'var(--theme-primary)',
+              '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+            } as React.CSSProperties
+          }
+        />
       </div>
 
       <div className="card w-full mt-10">
@@ -174,7 +200,18 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
-        <ReactApexChart options={optionsTwo} series={seriesTwo} type="bar" height={350} />
+        <ReactApexChart
+          options={optionsTwo}
+          series={seriesTwo}
+          type="bar"
+          height={350}
+          style={
+            {
+              stroke: 'var(--theme-primary)',
+              '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+            } as React.CSSProperties
+          }
+        />
       </div>
 
       <div className="grid grid-cols-2">

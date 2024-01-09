@@ -194,7 +194,15 @@ export default function Index() {
           </div>
         </div>
         <div className="flex gap-3">
-          <Button className="bg-purple-500 text-white px-2 w-9 h-9 rounded-md">
+          <Button
+            className="text-white px-2 w-9 h-9 rounded-md"
+            style={
+              {
+                backgroundColor: 'var(--theme-primary)',
+                '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+              } as React.CSSProperties
+            }
+          >
             <FaPlus />
           </Button>
         </div>

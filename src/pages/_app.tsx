@@ -35,7 +35,7 @@ const App = ({
         <ThemeProvider
           attribute="class"
           themes={['light', 'dark']}
-          enableSystem={false}
+          enableSystem
           defaultTheme="dark"
           forcedTheme={Component.theme || undefined}
           disableTransitionOnChange

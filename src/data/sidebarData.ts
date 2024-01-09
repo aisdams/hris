@@ -147,7 +147,7 @@ const sideBarData = [
       },
       {
         title: 'Account Balances',
-        link: '/finance/accountbalance',
+        link: '/finance/account-balance',
       },
       {
         title: 'Payees',

@@ -10,6 +10,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useTheme } from 'next-themes';
 import {
   ColumnDef,
   ColumnFiltersState,
@@ -22,6 +23,8 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
+import { themes } from '@/registry/themes';
+import { useConfig } from '@/hooks/use-config';
 import { Button } from '@/components/ui/button';
 import { MdOutlineAllInbox } from 'react-icons/md';
 import { LiaShareAltSolid } from 'react-icons/lia';
@@ -183,13 +186,17 @@ export const columns: ColumnDef<Payment>[] = [
 ];
 
 export default function AccountStatement() {
+  const [config] = useConfig();
+  const { theme: mode } = useTheme();
   const [open, setOpen] = React.useState(false);
   const [date, setDate] = React.useState<Date>();
   const [value, setValue] = React.useState('');
   const [sorting, setSorting] = React.useState<SortingState>([]);
+  const theme = themes.find((theme) => theme.name === config.theme);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
+
   const reports = [
     {
       title: 'Report',
@@ -254,10 +261,26 @@ export default function AccountStatement() {
           </div>
         </div>
         <div className="flex gap-3">
-          <Button className="bg-purple-500 text-white px-2 w-9 h-9 rounded-md">
+          <Button
+            className="text-white px-2 w-9 h-9 rounded-md"
+            style={
+              {
+                backgroundColor: 'var(--theme-primary)',
+                '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+              } as React.CSSProperties
+            }
+          >
             <MdDownload />
           </Button>
-          <Button className="bg-purple-500 text-white px-2 w-9 h-9 rounded-md">
+          <Button
+            className="text-white px-2 w-9 h-9 rounded-md"
+            style={
+              {
+                backgroundColor: 'var(--theme-primary)',
+                '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+              } as React.CSSProperties
+            }
+          >
             <HiOutlineDocumentPlus />
           </Button>
         </div>
@@ -337,7 +360,15 @@ export default function AccountStatement() {
             </div>
           </div>
           <div className="flex gap-2 items-center mt-5">
-            <Button className="bg-purple-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
+            <Button
+              className="text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center"
+              style={
+                {
+                  backgroundColor: 'var(--theme-primary)',
+                  '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+                } as React.CSSProperties
+              }
+            >
               <FaSearch />
             </Button>
             <Button className="bg-red-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
@@ -350,7 +381,15 @@ export default function AccountStatement() {
       <div className="grid grid-cols-3 gap-6 my-20 mx-auto justify-between">
         {reports.map((report, idx) => (
           <div className="flex items-center gap-5 bg-gray-300/5 px-3 py-1 rounded-md" key={idx}>
-            <div className="bg-purple-500 px-3 py-2 rounded-xl text-white">
+            <div
+              className="px-3 py-2 rounded-xl text-white"
+              style={
+                {
+                  backgroundColor: 'var(--theme-primary)',
+                  '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+                } as React.CSSProperties
+              }
+            >
               <span>{React.createElement(report.icon, { size: 28 })}</span>
             </div>
             <div className="">

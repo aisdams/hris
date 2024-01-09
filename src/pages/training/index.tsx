@@ -22,6 +22,9 @@ import {
   DropdownMenuCheckboxItem,
 } from '@/components/ui/dropdown-menu';
 import { FaPlus } from 'react-icons/fa';
+import { useTheme } from 'next-themes';
+import { themes } from '@/registry/themes';
+import { useConfig } from '@/hooks/use-config';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -151,8 +154,11 @@ export const columns: ColumnDef<Payment>[] = [
   },
 ];
 export default function Training() {
+  const [config] = useConfig();
+  const { theme: mode } = useTheme();
   const [date, setDate] = React.useState<Date>();
   const [sorting, setSorting] = React.useState<SortingState>([]);
+  const theme = themes.find((theme) => theme.name === config.theme);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
@@ -187,10 +193,26 @@ export default function Training() {
           </div>
         </div>
         <div className="flex gap-3">
-          <Button className="bg-purple-500 text-white px-2 w-9 h-9 rounded-md">
+          <Button
+            className="text-white px-2 w-9 h-9 rounded-md"
+            style={
+              {
+                backgroundColor: 'var(--theme-primary)',
+                '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+              } as React.CSSProperties
+            }
+          >
             <HiOutlineDocumentPlus />
           </Button>
-          <Button className="bg-purple-500 text-white px-2 w-9 h-9 rounded-md">
+          <Button
+            className="text-white px-2 w-9 h-9 rounded-md"
+            style={
+              {
+                backgroundColor: 'var(--theme-primary)',
+                '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+              } as React.CSSProperties
+            }
+          >
             <FaPlus />
           </Button>
         </div>

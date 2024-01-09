@@ -24,6 +24,9 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { FaPlus } from 'react-icons/fa';
 import { CgCloseO } from 'react-icons/cg';
+import { useTheme } from 'next-themes';
+import { themes } from '@/registry/themes';
+import { useConfig } from '@/hooks/use-config';
 import { Input } from '@/components/ui/input';
 import { TbCircleCheck } from 'react-icons/tb';
 import { Button } from '@/components/ui/button';
@@ -158,10 +161,13 @@ export const columns: ColumnDef<Payment>[] = [
 ];
 
 export default function Index() {
+  const [config] = useConfig();
+  const { theme: mode } = useTheme();
+  const [rowSelection, setRowSelection] = React.useState({});
   const [sorting, setSorting] = React.useState<SortingState>([]);
+  const theme = themes.find((theme) => theme.name === config.theme);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = React.useState({});
 
   const table = useReactTable({
     data,
@@ -194,7 +200,7 @@ export default function Index() {
           </div>
         </div>
         <div className="flex gap-3">
-          <Button className="bg-purple-500 text-white px-2 w-9 h-9 rounded-md">
+          <Button className="px-2 w-9 h-9 rounded-md">
             <FaPlus />
           </Button>
         </div>

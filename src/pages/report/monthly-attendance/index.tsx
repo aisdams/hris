@@ -10,18 +10,27 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useTheme } from 'next-themes';
+import { CgCloseO } from 'react-icons/cg';
+import { themes } from '@/registry/themes';
+import { useConfig } from '@/hooks/use-config';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
 import { Calendar as CalendarIcon } from 'lucide-react';
+import { IoIosRemoveCircleOutline } from 'react-icons/io';
+import { TbCircleCheck, TbClipboardCopy } from 'react-icons/tb';
 import { FaSearch, FaRegTrashAlt, FaChevronDown } from 'react-icons/fa';
 import { MdArrowForwardIos, MdDownload, MdOutlineDateRange } from 'react-icons/md';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import { CgCloseO } from 'react-icons/cg';
-import { TbCircleCheck, TbClipboardCopy } from 'react-icons/tb';
-import { IoIosRemoveCircleOutline } from 'react-icons/io';
 
 export default function MonthlyAttendance() {
   const [date, setDate] = React.useState<Date>();
+
+  const { theme: mode } = useTheme();
+  const [config] = useConfig();
+
+  const theme = themes.find((theme) => theme.name === config.theme);
+
   return (
     <div className="w-full">
       <div className="flex w-full justify-between pt-10 items-center">
@@ -33,17 +42,27 @@ export default function MonthlyAttendance() {
             <h1>Manage Monthly Attendance Report</h1>
           </div>
         </div>
-        <Button className="bg-purple-500 text-white px-2 w-9 h-9 rounded-md">
+        <Button
+          className="text-white px-2 w-9 h-9 rounded-md"
+          style={
+            {
+              backgroundColor: 'var(--theme-primary)',
+              '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+            } as React.CSSProperties
+          }
+        >
           <MdDownload />
         </Button>
       </div>
 
       <div className="my-10">
         <div className="grid items-center gap-3 md:justify-end">
-          <div className="md:grid 
-          w-full hidden"></div>
           <div
-            className="md:flex grid gap-3
+            className="md:grid 
+          w-full hidden"
+          ></div>
+          <div
+            className="md:flex grid items-center gap-3
           "
           >
             <div className="grid">
@@ -111,14 +130,23 @@ export default function MonthlyAttendance() {
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
-          </div>
-          <div className="flex gap-2 items-center mt-5">
-            <Button className="bg-purple-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
-              <FaSearch />
-            </Button>
-            <Button className="bg-red-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
-              <FaRegTrashAlt />
-            </Button>
+
+            <div className="flex gap-2 items-center mt-5">
+              <Button
+                className="text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center"
+                style={
+                  {
+                    backgroundColor: 'var(--theme-primary)',
+                    '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+                  } as React.CSSProperties
+                }
+              >
+                <FaSearch />
+              </Button>
+              <Button className="bg-red-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
+                <FaRegTrashAlt />
+              </Button>
+            </div>
           </div>
         </div>
       </div>
@@ -126,7 +154,15 @@ export default function MonthlyAttendance() {
       <div className="w-full mt-14">
         <div className="grid grid-cols-2  gap-3 items-center">
           <div className="flex items-center gap-3">
-            <div className="bg-purple-500 text-white px-2 w-10 h-10 rounded-md grid items-center">
+            <div
+              className="text-white px-2 w-10 h-10 rounded-md grid items-center"
+              style={
+                {
+                  backgroundColor: 'var(--theme-primary)',
+                  '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+                } as React.CSSProperties
+              }
+            >
               <TbClipboardCopy className="text-2xl" />
             </div>
             <div className="grid">
@@ -148,7 +184,15 @@ export default function MonthlyAttendance() {
 
         <div className="grid grid-cols-3 gap-3 items-center mt-8">
           <div className="flex items-center gap-3">
-            <div className="bg-purple-500 text-white px-2 w-10 h-10 rounded-md grid items-center">
+            <div
+              className="text-white px-2 w-10 h-10 rounded-md grid items-center"
+              style={
+                {
+                  backgroundColor: 'var(--theme-primary)',
+                  '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+                } as React.CSSProperties
+              }
+            >
               <TbCircleCheck className="text-2xl" />
             </div>
             <div className="grid">
@@ -168,7 +212,15 @@ export default function MonthlyAttendance() {
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="bg-purple-500 text-white px-2 w-10 h-10 rounded-md grid items-center">
+            <div
+              className="text-white px-2 w-10 h-10 rounded-md grid items-center"
+              style={
+                {
+                  backgroundColor: 'var(--theme-primary)',
+                  '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+                } as React.CSSProperties
+              }
+            >
               <IoIosRemoveCircleOutline className="text-2xl" />
             </div>
             <div className="grid">

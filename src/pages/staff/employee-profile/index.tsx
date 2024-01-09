@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import Image from 'next/image';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,20 +8,26 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useTheme } from 'next-themes';
+import { themes } from '@/registry/themes';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { useConfig } from '@/hooks/use-config';
 import { Button } from '@/components/ui/button';
-import LionImage from '../../../../public/img/lion.jpg';
+import React, { useEffect, useState } from 'react';
 import ImageAv from '../../../../public/img/image.jpg';
-import FamilyImage from '../../../../public/img/family.jpg';
+import LionImage from '../../../../public/img/lion.jpg';
 import { HiOutlineDocumentPlus } from 'react-icons/hi2';
+import FamilyImage from '../../../../public/img/family.jpg';
 import { MdArrowForwardIos, MdDownload } from 'react-icons/md';
 import { FaChevronDown, FaRegTrashAlt, FaSearch, FaFilter } from 'react-icons/fa';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
-import Image from 'next/image';
 
 export default function EmployeeProfile() {
+  const [config] = useConfig();
+  const { theme: mode } = useTheme();
   const [openMenu, isOpenMenu] = useState(false);
+  const theme = themes.find((theme) => theme.name === config.theme);
 
   const employeeProfile = [
     {
@@ -91,7 +97,15 @@ export default function EmployeeProfile() {
           </div>
         </div>
         <div className="flex gap-3">
-          <Button className="bg-purple-500 text-white px-2 w-9 h-9 rounded-md">
+          <Button
+            className="text-white px-2 w-9 h-9 rounded-md"
+            style={
+              {
+                backgroundColor: 'var(--theme-primary)',
+                '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+              } as React.CSSProperties
+            }
+          >
             <FaFilter />
           </Button>
         </div>
@@ -146,7 +160,15 @@ export default function EmployeeProfile() {
           </div>
 
           <div className="flex gap-2 pt-7">
-            <Button className="bg-purple-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
+            <Button
+              className="text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center"
+              style={
+                {
+                  backgroundColor: 'var(--theme-primary)',
+                  '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+                } as React.CSSProperties
+              }
+            >
               <FaSearch />
             </Button>
             <Button className="bg-red-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
@@ -166,7 +188,17 @@ export default function EmployeeProfile() {
             />
             <h1 className="text-green-500">{employe.title}</h1>
             <p>{employe.position}</p>
-            <Button className="bg-purple-500">{employe.kode}</Button>
+            <Button
+              className="text-white"
+              style={
+                {
+                  backgroundColor: 'var(--theme-primary)',
+                  '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+                } as React.CSSProperties
+              }
+            >
+              {employe.kode}
+            </Button>
           </div>
         ))}
       </div>

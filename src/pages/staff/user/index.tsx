@@ -1,6 +1,9 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useTheme } from 'next-themes';
+import { themes } from '@/registry/themes';
+import { useConfig } from '@/hooks/use-config';
 import { Button } from '@/components/ui/button';
 import { FaUserPlus, FaPlus } from 'react-icons/fa';
 import LionImage from '../../../../public/img/lion.jpg';
@@ -11,6 +14,10 @@ import { MdArrowForwardIos, MdDownload } from 'react-icons/md';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 
 export default function User() {
+  const [config] = useConfig();
+  const { theme: mode } = useTheme();
+  const theme = themes.find((theme) => theme.name === config.theme);
+
   const users = [
     {
       position: 'Hr',
@@ -50,10 +57,26 @@ export default function User() {
           </div>
         </div>
         <div className="flex gap-3">
-          <Button className="bg-purple-500 text-white px-2 w-9 h-9 rounded-md">
+          <Button
+            className="text-white px-2 w-9 h-9 rounded-md"
+            style={
+              {
+                backgroundColor: 'var(--theme-primary)',
+                '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+              } as React.CSSProperties
+            }
+          >
             <FaUserPlus />
           </Button>
-          <Button className="bg-purple-500 text-white px-2 w-9 h-9 rounded-md">
+          <Button
+            className="text-white px-2 w-9 h-9 rounded-md"
+            style={
+              {
+                backgroundColor: 'var(--theme-primary)',
+                '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+              } as React.CSSProperties
+            }
+          >
             <FaPlus />
           </Button>
         </div>
@@ -63,7 +86,17 @@ export default function User() {
         {users.map((user, idx) => (
           <div key={idx} className="">
             <div className="flex justify-between">
-              <div className="bg-purple-500 px-3 text-white h-max">{user.position}</div>
+              <div
+                className="px-3 text-white h-max"
+                style={
+                  {
+                    backgroundColor: 'var(--theme-primary)',
+                    '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+                  } as React.CSSProperties
+                }
+              >
+                {user.position}
+              </div>
             </div>
             <Image
               src={user.image}

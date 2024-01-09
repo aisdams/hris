@@ -26,13 +26,18 @@ import { Customizer, ThemeCustomizer } from '@/components/theme-customizer';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import Link from 'next/link';
+import { useConfig } from '@/hooks/use-config';
+import { themes } from '@/registry/themes';
 
 interface NavbarProps {
   toggleSidebar: () => void;
 }
 
 const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
-  const { theme, setTheme } = useTheme();
+  const { theme: mode, setTheme } = useTheme();
+  const [config] = useConfig();
+
+  const theme = themes.find((theme) => theme.name === config.theme);
   const [switchToogle, setSwitchToogle] = useState(true);
   const [showSubMenu, setShowSubMenu] = useState(false);
   const [activeSubMenu, setActiveSubMenu] = useState(null);
@@ -165,7 +170,15 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
 
             <div className="flex items-center">
               <Sheet>
-                <SheetTrigger className="flex items-center gap-3 bg-gray-200 dark:bg-[#8b8b8b] rounded-full px-3 py-2 text-sm">
+                <SheetTrigger
+                  className="text-white flex items-center gap-3 rounded-full px-3 py-2 text-sm"
+                  style={
+                    {
+                      backgroundColor: 'var(--theme-primary)',
+                      '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+                    } as React.CSSProperties
+                  }
+                >
                   <FaPencilAlt />
                   Customize
                 </SheetTrigger>

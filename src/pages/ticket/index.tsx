@@ -23,8 +23,11 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { FaPlus } from 'react-icons/fa';
+import { useTheme } from 'next-themes';
+import { themes } from '@/registry/themes';
 import { CgCloseO } from 'react-icons/cg';
 import { Input } from '@/components/ui/input';
+import { useConfig } from '@/hooks/use-config';
 import { TbCircleCheck } from 'react-icons/tb';
 import { Button } from '@/components/ui/button';
 import { TbClipboardCopy } from 'react-icons/tb';
@@ -37,6 +40,9 @@ import { MdArrowForwardIos, MdDownload, MdOutlineDateRange } from 'react-icons/m
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 
 export default function Index() {
+  const [config] = useConfig();
+  const { theme: mode } = useTheme();
+  const theme = themes.find((theme) => theme.name === config.theme);
   return (
     <div className="w-full">
       <div className="flex w-full justify-between pt-10 items-center">
@@ -49,7 +55,15 @@ export default function Index() {
           </div>
         </div>
         <div className="flex gap-3">
-          <Button className="bg-purple-500 text-white px-2 w-9 h-9 rounded-md">
+          <Button
+            className="text-white px-2 w-9 h-9 rounded-md"
+            style={
+              {
+                backgroundColor: 'var(--theme-primary)',
+                '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+              } as React.CSSProperties
+            }
+          >
             <FaPlus />
           </Button>
         </div>

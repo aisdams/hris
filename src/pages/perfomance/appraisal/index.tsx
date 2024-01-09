@@ -22,6 +22,10 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
+import { useTheme } from 'next-themes';
+import { themes } from '@/registry/themes';
+import { Input } from '@/components/ui/input';
+import { useConfig } from '@/hooks/use-config';
 import { Button } from '@/components/ui/button';
 import { MdArrowForwardIos } from 'react-icons/md';
 import { Checkbox } from '@/components/ui/checkbox';
@@ -30,7 +34,6 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { ArrowUpDown, Check, ChevronDown, ChevronsUpDown, MoreHorizontal } from 'lucide-react';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem } from '@/components/ui/command';
-import { Input } from '@/components/ui/input';
 
 const frameworks = [
   {
@@ -176,10 +179,13 @@ export const columns: ColumnDef<Payment>[] = [
 ];
 
 export default function Appraisal() {
+  const [config] = useConfig();
+  const { theme: mode } = useTheme();
   const [open, setOpen] = React.useState(false);
   const [value, setValue] = React.useState('');
   const [date, setDate] = React.useState<Date>();
   const [sorting, setSorting] = React.useState<SortingState>([]);
+  const theme = themes.find((theme) => theme.name === config.theme);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
   const [rowSelection, setRowSelection] = React.useState({});
@@ -214,7 +220,15 @@ export default function Appraisal() {
           </div>
         </div>
         <div className="flex gap-3">
-          <Button className="bg-purple-500 text-white px-2 w-9 h-9 rounded-md">
+          <Button
+            className="text-white px-2 w-9 h-9 rounded-md"
+            style={
+              {
+                backgroundColor: 'var(--theme-primary)',
+                '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+              } as React.CSSProperties
+            }
+          >
             <FaPlus />
           </Button>
         </div>

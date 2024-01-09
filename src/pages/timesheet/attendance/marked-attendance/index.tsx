@@ -23,8 +23,11 @@ import {
   getSortedRowModel,
   useReactTable,
 } from '@tanstack/react-table';
+import { useTheme } from 'next-themes';
+import { themes } from '@/registry/themes';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
+import { useConfig } from '@/hooks/use-config';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Calendar } from '@/components/ui/calendar';
@@ -158,11 +161,14 @@ export const columns: ColumnDef<Payment>[] = [
 ];
 
 export default function Index() {
+  const [config] = useConfig();
+  const { theme: mode } = useTheme();
   const [date, setDate] = React.useState<Date>();
+  const [rowSelection, setRowSelection] = React.useState({});
   const [sorting, setSorting] = React.useState<SortingState>([]);
+  const theme = themes.find((theme) => theme.name === config.theme);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = React.useState({});
 
   const table = useReactTable({
     data,
@@ -195,10 +201,26 @@ export default function Index() {
           </div>
         </div>
         <div className="flex gap-3">
-          <Button className="bg-purple-500 text-white px-2 w-9 h-9 rounded-md">
+          <Button
+            className="text-white px-2 w-9 h-9 rounded-md"
+            style={
+              {
+                backgroundColor: 'var(--theme-primary)',
+                '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+              } as React.CSSProperties
+            }
+          >
             <MdDownload />
           </Button>
-          <Button className="bg-purple-500 text-white px-2 w-9 h-9 rounded-md">
+          <Button
+            className="text-white px-2 w-9 h-9 rounded-md"
+            style={
+              {
+                backgroundColor: 'var(--theme-primary)',
+                '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+              } as React.CSSProperties
+            }
+          >
             <HiOutlineDocumentPlus />
           </Button>
         </div>
@@ -207,82 +229,82 @@ export default function Index() {
       <div className="flex gap-3 my-10 w-full">
         <div className="grid" />
         <div className="md:flex grid gap-3 items-center md:justify-end w-full">
-        <div className="grid">
-          <h1 className="text-sm mb-2">Type</h1>
-          <RadioGroup defaultValue="monthly" className="flex">
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="monthly" id="monthly" />
-              <Label htmlFor="monthly" className="font-semibold">
-                Monthly
-              </Label>
-            </div>
-            <div className="flex items-center space-x-2">
-              <RadioGroupItem value="yearly" id="yearly" />
-              <Label htmlFor="yearly">Yearly</Label>
-            </div>
-          </RadioGroup>
-        </div>
+          <div className="grid">
+            <h1 className="text-sm mb-2">Type</h1>
+            <RadioGroup defaultValue="monthly" className="flex">
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="monthly" id="monthly" />
+                <Label htmlFor="monthly" className="font-semibold">
+                  Monthly
+                </Label>
+              </div>
+              <div className="flex items-center space-x-2">
+                <RadioGroupItem value="yearly" id="yearly" />
+                <Label htmlFor="yearly">Yearly</Label>
+              </div>
+            </RadioGroup>
+          </div>
 
-        <div className="grid">
-          <h1 className="text-sm mb-2">Month</h1>
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button
-                className={cn(
-                  'md:w-[160px] w-full border border-gray-500 bg-transparent hover:bg-transparent justify-start text-left font-normal',
-                  !date && 'text-muted-foreground',
-                )}
-              >
-                <CalendarIcon className="mr-2 h-4 w-4" />
-                {date ? format(date, 'PPP') : <span>December 2023</span>}
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-auto p-0">
-              <Calendar mode="single" selected={date} onSelect={setDate} initialFocus />
-            </PopoverContent>
-          </Popover>
-        </div>
+          <div className="grid">
+            <h1 className="text-sm mb-2">Month</h1>
+            <Popover>
+              <PopoverTrigger asChild>
+                <Button
+                  className={cn(
+                    'md:w-[160px] w-full border border-gray-500 bg-transparent hover:bg-transparent justify-start text-left font-normal',
+                    !date && 'text-muted-foreground',
+                  )}
+                >
+                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  {date ? format(date, 'PPP') : <span>December 2023</span>}
+                </Button>
+              </PopoverTrigger>
+              <PopoverContent className="w-auto p-0">
+                <Calendar mode="single" selected={date} onSelect={setDate} initialFocus />
+              </PopoverContent>
+            </Popover>
+          </div>
 
-        <div className="grid">
-          <h1 className="text-sm mb-2">Branch</h1>
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex px-3 md:w-[160px] w-full border border-gray-500 bg-transparent hover:bg-transparent text-left font-normal justify-between rounded-md h-10 items-center pt-1">
-              All <FaChevronDown />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel>My Account</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>China</DropdownMenuItem>
-              <DropdownMenuItem>India</DropdownMenuItem>
-              <DropdownMenuItem>Canada</DropdownMenuItem>
-              <DropdownMenuItem>Greece</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
+          <div className="grid">
+            <h1 className="text-sm mb-2">Branch</h1>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex px-3 md:w-[160px] w-full border border-gray-500 bg-transparent hover:bg-transparent text-left font-normal justify-between rounded-md h-10 items-center pt-1">
+                All <FaChevronDown />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>China</DropdownMenuItem>
+                <DropdownMenuItem>India</DropdownMenuItem>
+                <DropdownMenuItem>Canada</DropdownMenuItem>
+                <DropdownMenuItem>Greece</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
 
-        <div className="grid">
-          <h1 className="text-sm mb-2">Department</h1>
-          <DropdownMenu>
-            <DropdownMenuTrigger className="flex px-3 md:w-[160px] w-full border border-gray-500 bg-transparent hover:bg-transparent text-left text-sm font-normal justify-between rounded-md h-10 items-center pt-1">
-              Select Department <FaChevronDown />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuLabel>Industrials</DropdownMenuLabel>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>China</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-        </div>
+          <div className="grid">
+            <h1 className="text-sm mb-2">Department</h1>
+            <DropdownMenu>
+              <DropdownMenuTrigger className="flex px-3 md:w-[160px] w-full border border-gray-500 bg-transparent hover:bg-transparent text-left text-sm font-normal justify-between rounded-md h-10 items-center pt-1">
+                Select Department <FaChevronDown />
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel>Industrials</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>China</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
 
-        <div className="flex gap-4 pt-7">
-          <Button className="bg-purple-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
-            <FaSearch />
-          </Button>
-          <Button className="bg-red-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
-            <FaRegTrashAlt />
-          </Button>
+          <div className="flex gap-4 pt-7">
+            <Button className="bg-purple-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
+              <FaSearch />
+            </Button>
+            <Button className="bg-red-500 text-xs px-2 w-9 h-9 text-white rounded-md p-3 mx-0 text-center">
+              <FaRegTrashAlt />
+            </Button>
+          </div>
         </div>
-      </div>
       </div>
 
       <div className="w-full mt-10">

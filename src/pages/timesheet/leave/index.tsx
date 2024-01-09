@@ -22,10 +22,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useTheme } from 'next-themes';
 import { FaPlus } from 'react-icons/fa';
 import { CgCloseO } from 'react-icons/cg';
+import { themes } from '@/registry/themes';
 import { Input } from '@/components/ui/input';
 import { TbCircleCheck } from 'react-icons/tb';
+import { useConfig } from '@/hooks/use-config';
 import { Button } from '@/components/ui/button';
 import { TbClipboardCopy } from 'react-icons/tb';
 import { IoDocumentOutline } from 'react-icons/io5';
@@ -158,10 +161,13 @@ export const columns: ColumnDef<Payment>[] = [
 ];
 
 export default function Leave() {
+  const [config] = useConfig();
+  const { theme: mode } = useTheme();
+  const [rowSelection, setRowSelection] = React.useState({});
   const [sorting, setSorting] = React.useState<SortingState>([]);
+  const theme = themes.find((theme) => theme.name === config.theme);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = React.useState({});
 
   const table = useReactTable({
     data,
@@ -194,13 +200,37 @@ export default function Leave() {
           </div>
         </div>
         <div className="flex gap-3">
-          <Button className="bg-purple-500 text-white px-2 w-9 h-9 rounded-md">
+          <Button
+            className="text-white px-2 w-9 h-9 rounded-md"
+            style={
+              {
+                backgroundColor: 'var(--theme-primary)',
+                '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+              } as React.CSSProperties
+            }
+          >
             <HiOutlineDocumentPlus />
           </Button>
-          <Button className="bg-purple-500 text-white px-2 w-9 h-9 rounded-md">
+          <Button
+            className="text-white px-2 w-9 h-9 rounded-md"
+            style={
+              {
+                backgroundColor: 'var(--theme-primary)',
+                '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+              } as React.CSSProperties
+            }
+          >
             <IoDocumentOutline />
           </Button>
-          <Button className="bg-purple-500 text-white px-2 w-9 h-9 rounded-md">
+          <Button
+            className="text-white px-2 w-9 h-9 rounded-md"
+            style={
+              {
+                backgroundColor: 'var(--theme-primary)',
+                '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+              } as React.CSSProperties
+            }
+          >
             <FaPlus />
           </Button>
         </div>
@@ -209,7 +239,7 @@ export default function Leave() {
       <div className="w-full my-10">
         <div className="grid grid-cols-2 gap-3 items-center">
           <div className="flex items-center gap-3">
-            <div className="bg-purple-500 text-white px-2 w-10 h-10 rounded-md grid items-center">
+            <div className="px-2 w-10 h-10 rounded-md grid items-center">
               <TbClipboardCopy className="text-2xl" />
             </div>
             <div className="grid">
@@ -231,7 +261,7 @@ export default function Leave() {
 
         <div className="grid md:grid-cols-3 grid-cols-2 gap-3 items-center mt-8">
           <div className="flex items-center gap-3">
-            <div className="bg-purple-500 text-white px-2 w-10 h-10 rounded-md grid items-center">
+            <div className="px-2 w-10 h-10 rounded-md grid items-center">
               <TbCircleCheck className="text-2xl" />
             </div>
             <div className="grid">
@@ -251,7 +281,7 @@ export default function Leave() {
           </div>
 
           <div className="flex items-center gap-3">
-            <div className="bg-purple-500 text-white px-2 w-10 h-10 rounded-md grid items-center">
+            <div className="px-2 w-10 h-10 rounded-md grid items-center">
               <IoIosRemoveCircleOutline className="text-2xl" />
             </div>
             <div className="grid">
