@@ -95,9 +95,7 @@ const Login: NextPageCustomLayout = () => {
       <div className="grid grid-cols-2 items-center justify-center">
         <div className="px-20">
           <h1 className="text-4xl font-bold mb-10">Login</h1>
-          <p className="text-xl font-light mb-5">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas eaque quisquam doloribus laudantium!
-          </p>
+          <p className="text-xl font-light mb-5">HI Welcome</p>
           <InputText
             name="username"
             label="username"
