@@ -24,10 +24,10 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { useTheme } from 'next-themes';
 import { themes } from '@/registry/themes';
-import { useConfig } from '@/hooks/use-config';
 import { FaPlus } from 'react-icons/fa';
 import { CgCloseO } from 'react-icons/cg';
 import { Input } from '@/components/ui/input';
+import { useConfig } from '@/hooks/use-config';
 import { TbCircleCheck } from 'react-icons/tb';
 import { Button } from '@/components/ui/button';
 import { TbClipboardCopy } from 'react-icons/tb';
