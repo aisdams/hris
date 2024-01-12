@@ -202,7 +202,7 @@ export default function Index() {
         </div>
         <div className="flex gap-3">
           <Button
-            className="text-white px-2 w-9 h-9 rounded-md"
+            className="px-2 w-9 h-9 rounded-md"
             style={
               {
                 backgroundColor: 'var(--theme-primary)',
@@ -213,7 +213,7 @@ export default function Index() {
             <MdDownload />
           </Button>
           <Button
-            className="text-white px-2 w-9 h-9 rounded-md"
+            className="px-2 w-9 h-9 rounded-md"
             style={
               {
                 backgroundColor: 'var(--theme-primary)',

@@ -43,7 +43,7 @@ export default function MonthlyAttendance() {
           </div>
         </div>
         <Button
-          className="text-white px-2 w-9 h-9 rounded-md"
+          className="px-2 w-9 h-9 rounded-md"
           style={
             {
               backgroundColor: 'var(--theme-primary)',

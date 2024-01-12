@@ -224,7 +224,7 @@ export default function Employee() {
         </div>
         <div className="flex gap-3">
           <Button
-            className="text-white px-2 w-9 h-9 rounded-md"
+            className="px-2 w-9 h-9 rounded-md"
             style={
               {
                 backgroundColor: 'var(--theme-primary)',
@@ -235,7 +235,7 @@ export default function Employee() {
             <HiOutlineDocumentPlus />
           </Button>
           <Button
-            className="text-white px-2 w-9 h-9 rounded-md"
+            className="px-2 w-9 h-9 rounded-md"
             style={
               {
                 backgroundColor: 'var(--theme-primary)',
@@ -246,7 +246,7 @@ export default function Employee() {
             <IoDocumentOutline />
           </Button>
           <Button
-            className="text-white px-2 w-9 h-9 rounded-md"
+            className="px-2 w-9 h-9 rounded-md"
             style={
               {
                 backgroundColor: 'var(--theme-primary)',

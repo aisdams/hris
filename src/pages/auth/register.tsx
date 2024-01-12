@@ -20,18 +20,20 @@ import { NextPageCustomLayout } from '@/types/_app.type';
 import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
 import Link from 'next/link';
 const defaultValues = {
+  email: '',
   username: '',
   password: '',
 };
 
 const Schema = yup.object({
+  email: yup.string().required().email(),
   username: yup.string().required(),
   password: yup.string().min(6).required(),
 });
 
 type LoginSchema = InferType<typeof Schema>;
 
-const Login: NextPageCustomLayout = () => {
+const Register: NextPageCustomLayout = () => {
   // const { status } = useSession();
   const methods = useForm<LoginSchema>({
     mode: 'all',
@@ -67,6 +69,7 @@ const Login: NextPageCustomLayout = () => {
   const onSubmit: SubmitHandler<LoginSchema> = async (data) => {
     setIsLoading(true);
     signIn('credentials', {
+      email: data.email,
       username: data.username,
       password: data.password,
       redirect: false,
@@ -98,10 +101,21 @@ const Login: NextPageCustomLayout = () => {
     <div className="w-full h-screen relative">
       <div className="grid grid-cols-2 items-center justify-center">
         <div className="!w-full grid px-20">
-          <h1 className="text-4xl font-bold mb-5 text-center">Login</h1>
+          <h1 className="text-4xl font-bold mb-5 text-center">Register</h1>
           <p className="text-xl font-light mb-5 text-center">HI 👋 Welcome</p>
           <FormProvider {...methods}>
             <form onSubmit={handleSubmit(onSubmit)} className="mt-2">
+              <InputText
+                name="email"
+                label="Email"
+                labelCN="text-sm"
+                inputCN="text-sm"
+                placeholder="Enter Email"
+                containerCN="mb-3"
+                mandatory
+                uppercase={false}
+                // withLabel={false}
+              />
               <InputText
                 name="username"
                 label="Username"
@@ -122,11 +136,11 @@ const Login: NextPageCustomLayout = () => {
                 // withLabel={false}
               />
               {/* <Button type="submit" className="w-max px-10 bg-gray-500 mt-3" disabled={isLoading}>
-                {isLoading ? 'Loading...' : 'Login'}
+                {isLoading ? 'Loading...' : 'Register'}
               </Button> */}
               <div className="my-5">
-                <Link className="w-max px-10 bg-gray-500 text-[#fafafa] py-2 rounded-md" href="/">
-                  Login
+                <Link className="w-max px-10 bg-gray-500 text-[#fafafa] py-2 rounded-md" href="/auth/login">
+                  Register
                 </Link>
               </div>
               {errMsgQS && (
@@ -135,9 +149,9 @@ const Login: NextPageCustomLayout = () => {
                 </div>
               )}
               <h1>
-                Dont have account?{' '}
-                <Link href="/auth/register" className="text-blue-300 underline">
-                  Register now
+                You have already account?{' '}
+                <Link href="/auth/login" className="text-blue-300 underline">
+                  Login now
                 </Link>
               </h1>
             </form>
@@ -151,7 +165,7 @@ const Login: NextPageCustomLayout = () => {
     </div>
   );
 };
-Login.getLayout = function getLayout(page: React.ReactElement) {
+Register.getLayout = function getLayout(page: React.ReactElement) {
   return page;
 };
-export default Login;
+export default Register;

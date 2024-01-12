@@ -58,7 +58,7 @@ export default function Settings() {
             <Input name="password" placeholder="confirm new password" className="mt-2" />
           </div>
           <Button
-            className="text-white px-5 mt-3 rounded-md"
+            className="px-5 mt-3 rounded-md"
             style={
               {
                 backgroundColor: 'var(--theme-primary)',
