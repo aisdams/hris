@@ -2,6 +2,7 @@ import { lowerCase, startCase } from 'lodash';
 import { useController, useFormContext } from 'react-hook-form';
 
 import { cn } from '@/lib/utils';
+import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
 
 type InputTextProps = {
   label?: string;
@@ -66,9 +67,9 @@ export default function InputText({
   return (
     <div className={cn('relative', containerCN)}>
       {withLabel && (
-        <label htmlFor={id || name} className={cn('mb-1 inline-block text-black', labelCN)}>
-          {label || startCase(name)}
-          {mandatory && <span className="text-[#f00]">*</span>}
+        <label htmlFor={id || name} className={cn('mb-2 inline-block text-white', labelCN)}>
+          {label || startCase(name)} {``}
+          {mandatory && <span className="text-white">*</span>}
         </label>
       )}
 
@@ -84,7 +85,7 @@ export default function InputText({
           value={field.value ?? ''}
           id={id || name}
           className={cn(
-            'h-9 w-full bg-background px-2 font-normal outline-none placeholder:text-sm placeholder:font-normal placeholder:text-muted-foreground disabled:select-none disabled:bg-muted',
+            'h-9 w-full bg-background px-2 font-normal outline-none placeholder:text-sm placeholder:font-normal placeholder:text-muted-foreground disabled:select-none disabled:bg-muted text-white border border-white/40',
             inputCN,
             className,
           )}
@@ -97,7 +98,13 @@ export default function InputText({
           {...props}
         />
       </div>
-      {!noErrorMessage && error?.message && <p className="text-xs text-red-600">{error.message}</p>}
+      {!noErrorMessage && error?.message && (
+        <p className="bg-red-600 text-white p-3 rounded-md flex items-center gap-x-2 text-sm mt-2">
+          {' '}
+          <ExclamationTriangleIcon className="h-4 w-4" />
+          {error.message}
+        </p>
+      )}
     </div>
   );
 }

@@ -22,9 +22,12 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
+import { useTheme } from 'next-themes';
 import { FaPlus } from 'react-icons/fa';
 import { CgCloseO } from 'react-icons/cg';
+import { themes } from '@/registry/themes';
 import { Input } from '@/components/ui/input';
+import { useConfig } from '@/hooks/use-config';
 import { TbCircleCheck } from 'react-icons/tb';
 import { Button } from '@/components/ui/button';
 import { TbClipboardCopy } from 'react-icons/tb';
@@ -158,10 +161,13 @@ export const columns: ColumnDef<Payment>[] = [
 ];
 
 export default function Index() {
+  const [config] = useConfig();
+  const { theme: mode } = useTheme();
+  const [rowSelection, setRowSelection] = React.useState({});
   const [sorting, setSorting] = React.useState<SortingState>([]);
+  const theme = themes.find((theme) => theme.name === config.theme);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([]);
   const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = React.useState({});
 
   const table = useReactTable({
     data,

@@ -170,15 +170,7 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
 
             <div className="flex items-center">
               <Sheet>
-                <SheetTrigger
-                  className="text-white flex items-center gap-3 rounded-full px-3 py-2 text-sm"
-                  style={
-                    {
-                      backgroundColor: 'var(--theme-primary)',
-                      '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
-                    } as React.CSSProperties
-                  }
-                >
+                <SheetTrigger className="bg-gray-500/90 text-white flex items-center gap-3 rounded-full px-3 py-2 text-sm">
                   <FaPencilAlt />
                   Customize
                 </SheetTrigger>
@@ -316,12 +308,24 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
                     <IoIosArrowDown />
                   </DropdownMenuTrigger>
                   <DropdownMenuContent>
-                    <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                    <DropdownMenuSeparator />
-                    <DropdownMenuItem>Profile</DropdownMenuItem>
-                    <DropdownMenuItem>Billing</DropdownMenuItem>
-                    <DropdownMenuItem>Team</DropdownMenuItem>
-                    <DropdownMenuItem>Log out</DropdownMenuItem>
+                    <Link href="/auth/login">
+                      <DropdownMenuLabel>My Account</DropdownMenuLabel>
+                    </Link>
+                    <Link href="/auth/login">
+                      <DropdownMenuSeparator />
+                    </Link>
+                    <Link href="/auth/login">
+                      <DropdownMenuItem>Profile</DropdownMenuItem>
+                    </Link>
+                    <Link href="/auth/login">
+                      <DropdownMenuItem>Billing</DropdownMenuItem>
+                    </Link>
+                    <Link href="/auth/login">
+                      <DropdownMenuItem>Team</DropdownMenuItem>
+                    </Link>
+                    <Link href="/auth/login">
+                      <DropdownMenuItem>Log out</DropdownMenuItem>
+                    </Link>
                   </DropdownMenuContent>
                 </DropdownMenu>
               </div>

@@ -1,3 +1,4 @@
+import React from 'react';
 import Image from 'next/image';
 import { InferType } from 'yup';
 import { toast } from 'react-toastify';
@@ -10,11 +11,14 @@ import { signIn, signOut, useSession } from 'next-auth/react';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 
 // import * as userService from '@/apis/user.api';
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
 import yup from '@/lib/yup';
 import InputPassword from '@/components/inputs/input-password';
 import InputText from '@/components/inputs/input-text';
 import { Button } from '@/components/ui/button';
 import { NextPageCustomLayout } from '@/types/_app.type';
+import { ExclamationTriangleIcon } from '@radix-ui/react-icons';
+import Link from 'next/link';
 const defaultValues = {
   username: '',
   password: '',
@@ -93,35 +97,43 @@ const Login: NextPageCustomLayout = () => {
   return (
     <div className="w-full h-screen relative">
       <div className="grid grid-cols-2 items-center justify-center">
-        <div className="px-20">
-          <h1 className="text-4xl font-bold mb-10">Login</h1>
-          <p className="text-xl font-light mb-5">HI Welcome</p>
-          <InputText
-            name="username"
-            label="username"
-            labelCN="text-sm"
-            inputCN="text-sm !bg-transparent text-black !border-black border"
-            containerCN="mb-4"
-            mandatory
-            uppercase={false}
-            withLabel={false}
-          />
-          <InputPassword
-            name="password"
-            labelCN="text-sm"
-            mandatory
-            inputCN="text-sm bg-transparent text-black"
-            containerCN="mb-4"
-            withLabel={false}
-          />
-          <Button type="submit" className="w-full bg-blueHeaderCard text-[#fafafa]" disabled={isLoading}>
-            {isLoading ? 'Loading...' : 'Login'}
-          </Button>
-          {errMsgQS && (
-            <div className="mt-2 text-center text-sm leading-none text-red-600">{errMsgQS && <p>{errMsgQS}</p>}</div>
-          )}
-          <Button className="text-white bg-blue-500 px-8 mt-5">Login</Button>
-          <p></p>
+        <div className="!w-full grid px-20">
+          <h1 className="text-4xl font-bold mb-5 text-center">Login</h1>
+          <p className="text-xl font-light mb-5 text-center">HI Welcome</p>
+          <FormProvider {...methods}>
+            <form onSubmit={handleSubmit(onSubmit)} className="mt-5">
+              <InputText
+                name="username"
+                label="Username"
+                labelCN="text-sm"
+                inputCN="text-sm"
+                placeholder="Enter Username"
+                containerCN="mb-4"
+                mandatory
+                uppercase={false}
+                // withLabel={false}
+              />
+              <InputPassword
+                name="password"
+                labelCN="text-sm"
+                mandatory
+                inputCN="text-sm"
+                containerCN="mb-4"
+                // withLabel={false}
+              />
+              {/* <Button type="submit" className="w-max px-10 bg-gray-500 text-[#fafafa] mt-3" disabled={isLoading}>
+                {isLoading ? 'Loading...' : 'Login'}
+              </Button> */}
+              <Link className="w-max px-10 bg-gray-500 text-[#fafafa] mt-3 py-2 rounded-md" href="/">
+                Login
+              </Link>
+              {errMsgQS && (
+                <div className="bg-destructive/15 p-3 rounded-md flex items-center gap-x-2 text-sm text-destructive">
+                  <ExclamationTriangleIcon className="h-4 w-4" /> {errMsgQS && <p> {errMsgQS}</p>}
+                </div>
+              )}
+            </form>
+          </FormProvider>
         </div>
         <div className="bg-gray-500 w-full h-screen"></div>
       </div>

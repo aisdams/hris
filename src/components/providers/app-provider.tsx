@@ -11,6 +11,8 @@ import { ToastContainer } from 'react-toastify';
 import useProgressBarStore from '@/zustand/use-progress-bar';
 
 import { Toaster } from '@/components/ui/toaster';
+import { useConfig } from '@/hooks/use-config';
+import { themes } from '@/registry/themes';
 
 // import SessionLoader from './session-loader';
 
@@ -19,19 +21,17 @@ type AppProviderProps = {
   initialLoading: boolean;
 };
 
-export default function AppProvider({
-  children,
-  initialLoading,
-}: AppProviderProps) {
+export default function AppProvider({ children, initialLoading }: AppProviderProps) {
   const router = useRouter();
   const isMounted = useMounted();
+
+  const [config] = useConfig();
+  const theme = themes.find((theme) => theme.name === config.theme);
   const [isLoading, setIsLoading] = useState(initialLoading);
   const { isBelowSmallScreen } = useIsBelowSmallScreen();
   const { theme: mode, forcedTheme } = useTheme();
   const isAnimating = useProgressBarStore((state: any) => state.isAnimating);
-  const setIsAnimating = useProgressBarStore(
-    (state: any) => state.setIsAnimating
-  );
+  const setIsAnimating = useProgressBarStore((state: any) => state.setIsAnimating);
 
   //! Loading Bar Logic
   useEffect(() => {
@@ -72,9 +72,15 @@ export default function AppProvider({
       <NProgress isAnimating={isLoading}>
         {({ isFinished }) => (
           <div
-            className={`fixed left-0 top-0 z-[999] h-[6px] w-full rounded-full bg-purple-500 transition-opacity ${
+            className={`fixed left-0 top-0 z-[999] h-[6px] w-full rounded-full transition-opacity ${
               isFinished ? 'opacity-0' : 'opacity-100'
             }`}
+            style={
+              {
+                backgroundColor: 'var(--theme-primary)',
+                '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+              } as React.CSSProperties
+            }
           />
         )}
       </NProgress>
