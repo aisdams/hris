@@ -301,10 +301,12 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
                   <DropdownMenuItem>Subscription</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-              <div className="flex gap-3 items-center">
-                <FaHeadset />
-                <h1>Chat Helper</h1>
-              </div>
+              <Link href="/chat-helper">
+                <div className="flex gap-3 items-center">
+                  <FaHeadset />
+                  <h1>Chat Helper</h1>
+                </div>
+              </Link>
               <div className="flex gap-3">
                 <Image src={LogoAvatar} alt="" className="w-9 h-9 rounded-full" width={36} height={36} />
                 <DropdownMenu>

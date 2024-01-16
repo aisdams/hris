@@ -160,7 +160,7 @@ export const columns: ColumnDef<Payment>[] = [
   },
 ];
 
-export default function Index() {
+export default function Holidays() {
   const [config] = useConfig();
   const { theme: mode } = useTheme();
   const [rowSelection, setRowSelection] = React.useState({});

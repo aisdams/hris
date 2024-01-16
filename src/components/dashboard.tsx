@@ -165,6 +165,7 @@ export default function Dashboard() {
           series={series}
           type="line"
           height={350}
+          width="100%"
           style={
             {
               stroke: 'var(--theme-primary)',
@@ -204,6 +205,7 @@ export default function Dashboard() {
           options={optionsTwo}
           series={seriesTwo}
           type="bar"
+          width="100%"
           height={350}
           style={
             {

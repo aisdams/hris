@@ -88,7 +88,15 @@ export default function ChatHelper() {
         <div className="card border border-white p-3 rounded-md relative !w-full h-32">
           <h1>Chat Room:</h1>
 
-          <Button className="absolute bottom-0 right-0 mb-4 mr-4 items-center flex gap-2">
+          <Button
+            className="absolute bottom-0 right-0 mb-4 mr-4 items-center flex gap-2"
+            style={
+              {
+                backgroundColor: 'var(--theme-primary)',
+                '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
+              } as React.CSSProperties
+            }
+          >
             Send <IoMdSend />
           </Button>
         </div>
