@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import Image from 'next/image';
 import {
   DropdownMenu,
@@ -13,9 +14,12 @@ import { ThemesTabs } from '../tabs';
 import { Button } from '../ui/button';
 import { useTheme } from 'next-themes';
 import { MdEmail } from 'react-icons/md';
+import { FaHeadset } from 'react-icons/fa';
+import { themes } from '@/registry/themes';
 import sideBarData from '@/data/sidebarData';
 import { RiMenu5Fill } from 'react-icons/ri';
 import { IoMdSettings } from 'react-icons/io';
+import { useConfig } from '@/hooks/use-config';
 import { ThemeWrapper } from '../theme-wrapper';
 import { IoIosArrowDown } from 'react-icons/io';
 import React, { useEffect, useState } from 'react';
@@ -25,9 +29,6 @@ import LogoAvatar from '../../../public/img/ghost.jpg';
 import { Customizer, ThemeCustomizer } from '@/components/theme-customizer';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import Link from 'next/link';
-import { useConfig } from '@/hooks/use-config';
-import { themes } from '@/registry/themes';
 
 interface NavbarProps {
   toggleSidebar: () => void;
@@ -300,6 +301,10 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
                   <DropdownMenuItem>Subscription</DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
+              <div className="flex gap-3 items-center">
+                <FaHeadset />
+                <h1>Chat Helper</h1>
+              </div>
               <div className="flex gap-3">
                 <Image src={LogoAvatar} alt="" className="w-9 h-9 rounded-full" width={36} height={36} />
                 <DropdownMenu>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ChangeEvent, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
@@ -17,6 +17,20 @@ export default function Settings() {
   const [config] = useConfig();
   const { theme: mode } = useTheme();
   const theme = themes.find((theme) => theme.name === config.theme);
+
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setSelectedImage(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   return (
     <div className="w-full">
       <div className="flex w-full justify-between pt-10 items-center relative">
@@ -36,13 +50,18 @@ export default function Settings() {
         <div className="">
           <div className="">
             <div className="flex items-center gap-5">
-              <Image src={AvatarImage} alt="" className="rounded-full w-24 h-24" />
+              {selectedImage ? (
+                <img src={selectedImage} alt="" className="rounded-full w-24 h-24" />
+              ) : (
+                <Image src={AvatarImage} alt="" className="rounded-full w-24 h-24" />
+              )}
+              {/* <Image src={AvatarImage} alt="" className="rounded-full w-24 h-24" /> */}
               <div className="">
                 <h1 className="text-2xl font-bold">Tatang</h1>
                 <p className="text-gray-50/70 font-light">Direktur Utama</p>
               </div>
             </div>
-            <Input type="file" className="mt-5" />
+            <Input type="file" onChange={handleImageChange} className="mt-5" />
           </div>
         </div>
 
@@ -50,12 +69,12 @@ export default function Settings() {
           <h1 className="text-2xl font-semibold mb-5">Reset Password :</h1>
           <div>
             <Label htmlFor="password">New Password : </Label>
-            <Input name="password" placeholder="Enter new password" className="mt-2" />
+            <Input name="password" type="password" placeholder="Enter new password" className="mt-2" />
           </div>
 
           <div className="mt-6">
             <Label htmlFor="confirm password">Confirm Password : </Label>
-            <Input name="password" placeholder="confirm new password" className="mt-2" />
+            <Input name="password" placeholder="confirm new password" type="password" className="mt-2" />
           </div>
           <Button
             className="px-5 mt-3 rounded-md"

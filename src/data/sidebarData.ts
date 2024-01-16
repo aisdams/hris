@@ -1,17 +1,16 @@
-import { MdHome } from 'react-icons/md';
-import { FaBox } from 'react-icons/fa';
 import { FiUsers } from 'react-icons/fi';
 import { GoClock } from 'react-icons/go';
 import { LuTicket } from 'react-icons/lu';
-import { CiGrid31 } from 'react-icons/ci';
+import { HiOutlineChatAlt2 } from 'react-icons/hi';
 import { TbBrandSnowflake } from 'react-icons/tb';
-import { CiWallet, CiGrid41 } from 'react-icons/ci';
-import { HiOutlineDocument } from 'react-icons/hi2';
+import { BiBox } from 'react-icons/bi';
+import { CiWallet, CiGrid41, CiGrid31 } from 'react-icons/ci';
 import { RiGraduationCapLine } from 'react-icons/ri';
-import { HiOutlineClipboardDocumentList } from 'react-icons/hi2';
+import { HiOutlineClipboardDocumentList, HiOutlineDocument } from 'react-icons/hi2';
 import { IoDocumentText, IoSettingsOutline } from 'react-icons/io5';
-import { FaRegCircle, FaRegUser, FaUserPlus, FaBell } from 'react-icons/fa';
-import { MdOutlineDateRange, MdOutlineVideocam } from 'react-icons/md';
+import { IoMdNotificationsOutline } from 'react-icons/io';
+import { FaRegCircle, FaRegUser, FaUserPlus } from 'react-icons/fa';
+import { MdOutlineDateRange, MdOutlineVideocam, MdHome } from 'react-icons/md';
 
 const sideBarData = [
   {
@@ -121,7 +120,7 @@ const sideBarData = [
   },
   {
     title: 'Perfomance',
-    icon: FaBox,
+    icon: BiBox,
     sub: [
       {
         title: 'Indicator',
@@ -321,7 +320,7 @@ const sideBarData = [
   },
   {
     title: 'Notification Templates',
-    icon: FaBell,
+    icon: IoMdNotificationsOutline,
     link: '/notification-templates',
   },
   {
@@ -338,6 +337,11 @@ const sideBarData = [
     title: 'System Setting',
     icon: IoSettingsOutline,
     link: '/settings',
+  },
+  {
+    title: 'Chat Helper',
+    icon: HiOutlineChatAlt2,
+    link: '/chat-helper',
   },
 ];
 
