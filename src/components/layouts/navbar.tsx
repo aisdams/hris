@@ -288,25 +288,6 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
                   </div>
                 </PopoverContent>
               </Popover>
-              <DropdownMenu>
-                <DropdownMenuTrigger>
-                  <IoMdSettings />
-                </DropdownMenuTrigger>
-                <DropdownMenuContent>
-                  <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>Profile</DropdownMenuItem>
-                  <DropdownMenuItem>Billing</DropdownMenuItem>
-                  <DropdownMenuItem>Team</DropdownMenuItem>
-                  <DropdownMenuItem>Subscription</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
-              <Link href="/chat-helper">
-                <div className="flex gap-3 items-center">
-                  <FaHeadset />
-                  <h1>Chat Helper</h1>
-                </div>
-              </Link>
               <div className="flex gap-3">
                 <Image src={LogoAvatar} alt="" className="w-9 h-9 rounded-full" width={36} height={36} />
                 <DropdownMenu>
@@ -321,7 +302,7 @@ const Navbar: React.FC<NavbarProps> = ({ toggleSidebar }) => {
                     <Link href="/auth/login">
                       <DropdownMenuSeparator />
                     </Link>
-                    <Link href="/auth/login">
+                    <Link href="/settings">
                       <DropdownMenuItem>Profile</DropdownMenuItem>
                     </Link>
                     <Link href="/auth/login">

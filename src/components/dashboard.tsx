@@ -66,11 +66,22 @@ export default function Dashboard() {
       height: 350,
       type: 'area',
       zoom: {
-        enabled: true,
+        enabled: false,
       },
+      background: 'transparent',
     },
     stroke: {
       curve: 'smooth',
+    },
+    theme: {
+      mode: 'dark' ? 'dark' : 'light',
+      palette: 'palette1',
+      monochrome: {
+        enabled: false,
+        color: '#255aee',
+        shadeTo: 'light',
+        shadeIntensity: 0.65,
+      },
     },
   };
 
@@ -90,11 +101,22 @@ export default function Dashboard() {
       height: 350,
       type: 'bar',
       zoom: {
-        enabled: true,
+        enabled: false,
       },
+      background: 'transparent',
     },
     stroke: {
       curve: 'smooth',
+    },
+    theme: {
+      mode: 'dark' ? 'dark' : 'light',
+      palette: 'palette1',
+      monochrome: {
+        enabled: false,
+        color: '#255aee',
+        shadeTo: 'light',
+        shadeIntensity: 0.65,
+      },
     },
   };
 
@@ -160,19 +182,7 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
-        <ReactApexChart
-          options={options}
-          series={series}
-          type="line"
-          height={350}
-          width="100%"
-          style={
-            {
-              stroke: 'var(--theme-primary)',
-              '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
-            } as React.CSSProperties
-          }
-        />
+        <ReactApexChart options={options} series={series} type="line" height={350} width="100%" />
       </div>
 
       <div className="card w-full mt-10">
@@ -201,19 +211,7 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
-        <ReactApexChart
-          options={optionsTwo}
-          series={seriesTwo}
-          type="bar"
-          width="100%"
-          height={350}
-          style={
-            {
-              stroke: 'var(--theme-primary)',
-              '--theme-primary': `hsl(${config?.cssVars[mode === 'dark' ? 'dark' : 'light'].primary})`,
-            } as React.CSSProperties
-          }
-        />
+        <ReactApexChart options={optionsTwo} series={seriesTwo} type="bar" width="100%" height={350} />
       </div>
 
       <div className="grid grid-cols-2">

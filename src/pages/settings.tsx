@@ -1,4 +1,3 @@
-import React, { ChangeEvent, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useTheme } from 'next-themes';
@@ -10,7 +9,9 @@ import { FormProvider } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
 import { MdArrowForwardIos } from 'react-icons/md';
 import { Checkbox } from '@/components/ui/checkbox';
+import React, { ChangeEvent, useState } from 'react';
 import AvatarImage from '../../public/img/ghost.jpg';
+import { CopyButton } from '@/components/copy-button';
 import InputPassword from '@/components/inputs/input-password';
 
 export default function Settings() {
@@ -43,25 +44,41 @@ export default function Settings() {
           </div>
         </div>
       </div>
+
       <div className="mt-10">
         <h1 className="font-bold text-2xl">Setting Your Account</h1>
       </div>
-      <div className="grid grid-cols-2 w-full h-full mt-10 gap-5">
+      <div className="grid md:grid-cols-2 w-full h-full mt-10 gap-5">
         <div className="">
           <div className="">
             <div className="flex items-center gap-5">
-              {selectedImage ? (
-                <img src={selectedImage} alt="" className="rounded-full w-24 h-24" />
-              ) : (
-                <Image src={AvatarImage} alt="" className="rounded-full w-24 h-24" />
-              )}
+              <div className="">
+                {selectedImage ? (
+                  <Image src={selectedImage} alt="" className="rounded-full w-24 h-24" />
+                ) : (
+                  <Image src={AvatarImage} alt="" className="rounded-full w-24 h-24" />
+                )}
+              </div>
               {/* <Image src={AvatarImage} alt="" className="rounded-full w-24 h-24" /> */}
               <div className="">
                 <h1 className="text-2xl font-bold">Tatang</h1>
                 <p className="text-gray-50/70 font-light">Direktur Utama</p>
+                <Input type="file" onChange={handleImageChange} className="mt-5" />
               </div>
             </div>
-            <Input type="file" onChange={handleImageChange} className="mt-5" />
+          </div>
+          <div className="">
+            <h1 className="text-2xl font-semibold my-5">Change Logo web</h1>
+            <div className="grid gap-3">
+              <div>
+                <Label>Choose Logo :</Label>
+                <Input type="file" className="" />
+              </div>
+              <div>
+                <Label>Type new title web :</Label>
+                <Input name="title" placeholder="Type new title web" />
+              </div>
+            </div>
           </div>
         </div>
 
@@ -77,7 +94,7 @@ export default function Settings() {
             <Input name="password" placeholder="confirm new password" type="password" className="mt-2" />
           </div>
           <Button
-            className="px-5 mt-3 rounded-md"
+            className="text-white px-5 mt-3 rounded-md"
             style={
               {
                 backgroundColor: 'var(--theme-primary)',
@@ -92,7 +109,7 @@ export default function Settings() {
 
       <div className="my-20">
         <h1 className="text-2xl font-semibold mb-5">Role Settings</h1>
-        <div className="grid grid-cols-2">
+        <div className="grid md:grid-cols-2">
           <div>
             <div className="items-center flex space-x-2 mb-3">
               <Checkbox id="role1" />

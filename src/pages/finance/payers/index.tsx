@@ -24,7 +24,7 @@ export default function Payers() {
         </div>
         <div className="flex gap-3">
           <Button
-            className="px-2 w-9 h-9 rounded-md"
+            className="px-5 mt-3 rounded-md text-white"
             style={
               {
                 backgroundColor: 'var(--theme-primary)',
@@ -35,7 +35,7 @@ export default function Payers() {
             <MdDownload />
           </Button>
           <Button
-            className="px-2 w-9 h-9 rounded-md"
+            className="px-5 mt-3 rounded-md text-white"
             style={
               {
                 backgroundColor: 'var(--theme-primary)',

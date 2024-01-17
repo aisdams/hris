@@ -338,11 +338,6 @@ const sideBarData = [
     icon: IoSettingsOutline,
     link: '/settings',
   },
-  {
-    title: 'Chat Helper',
-    icon: HiOutlineChatAlt2,
-    link: '/chat-helper',
-  },
 ];
 
 export default sideBarData;

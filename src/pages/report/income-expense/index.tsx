@@ -94,7 +94,7 @@ export default function IncomeExpense() {
           </div>
         </div>
         <Button
-          className="px-2 w-9 h-9 rounded-md text-white"
+          className="px-5 mt-3 rounded-md text-white text-white"
           style={
             {
               backgroundColor: 'var(--theme-primary)',

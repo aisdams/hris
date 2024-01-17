@@ -262,7 +262,7 @@ export default function AccountStatement() {
         </div>
         <div className="flex gap-3">
           <Button
-            className="px-2 w-9 h-9 rounded-md"
+            className="px-5 mt-3 rounded-md text-white"
             style={
               {
                 backgroundColor: 'var(--theme-primary)',
@@ -273,7 +273,7 @@ export default function AccountStatement() {
             <MdDownload />
           </Button>
           <Button
-            className="px-2 w-9 h-9 rounded-md"
+            className="px-5 mt-3 rounded-md text-white"
             style={
               {
                 backgroundColor: 'var(--theme-primary)',
@@ -378,7 +378,7 @@ export default function AccountStatement() {
         </div>
       </div>
 
-      <div className="grid grid-cols-3 gap-6 my-20 mx-auto justify-between">
+      <div className="grid grid-cols-2 md:grid-cols-3 gap-6 my-20 mx-auto justify-between">
         {reports.map((report, idx) => (
           <div className="flex items-center gap-5 bg-gray-300/5 px-3 py-1 rounded-md" key={idx}>
             <div

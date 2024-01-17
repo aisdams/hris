@@ -9,13 +9,13 @@ export default function Sidebar() {
   const [showSubMenu, setShowSubMenu] = useState(false);
   const [showSidebar, setShowSidebar] = useState(true);
   const [switchNav, setSwitchNav] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
   const handleSubMenuClickT = (idx: any) => {
     setShowSubMenu(!showSubMenu);
   };
 
   const [activeSubMenu, setActiveSubMenu] = useState(null);
-  const [active, setActive] = useState(false);
 
   const handleSubMenuClick = (index: any) => {
     setActiveSubMenu(activeSubMenu === index ? null : index);
